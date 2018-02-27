@@ -174,6 +174,31 @@ namespace CreativaSL.Web.Ganado.Models
                 return usuario;
             }
         }
-       
+
+        public static UsuarioModels ObtenerUsuario(UsuarioModels datos)
+        {
+            try
+            {
+                object[] parametros = { datos.id_usuario, datos.id_tipoUsuario };
+                DataSet ds = null;
+                ds = SqlHelper.ExecuteDataset(datos.conexion, "EM_spCSLDB_get_CatCuentaUser", parametros);
+                if (ds != null)
+                {
+                    if (ds.Tables.Count > 0)
+                    {
+                        if (ds.Tables[0] != null)
+                        {
+                            datos.tablaUsuario = ds.Tables[0];
+                        }
+                    }
+                }
+                return datos;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }

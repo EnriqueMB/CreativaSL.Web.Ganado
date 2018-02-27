@@ -41,32 +41,32 @@
                 <ul class="nav pull-right">
                     <li class="dropdown user">
 
-                        @*@{
+                        @{
                             if (User.Identity.IsAuthenticated)
                             {
                                 string Conexion = System.Configuration.ConfigurationManager.AppSettings.Get("strConnection");
-                                CreativaSL.Web.Escuela.Models.CatCuentaUserModels CuentaUsuario = new CreativaSL.Web.Escuela.Models.CatCuentaUserModels();
+                                CreativaSL.Web.Ganado.Models.UsuarioModels CuentaUsuario = new CreativaSL.Web.Ganado.Models.UsuarioModels();
                                 CuentaUsuario.conexion = Conexion;
-                                CuentaUsuario.id_cuenta = User.Identity.Name;
-                                CuentaUsuario.IDTipoPersona = 3;
-                                CuentaUsuario = CreativaSL.Web.Escuela.Models.CatCuentaUser_Datos.ObtenerUsuario(CuentaUsuario);
+                                CuentaUsuario.id_usuario = User.Identity.Name;
+                                CuentaUsuario.id_tipoUsuario = 1;
+                                CuentaUsuario = CreativaSL.Web.Ganado.Models._Usuario_Datos.ObtenerUsuario(CuentaUsuario);
 
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <span class="username">@Html.Raw(@Html.Encode(CuentaUsuario.tablaUsuarioCuenta.Rows[0]["nombre"]))</span>
+                                    <span class="username">@Html.Raw(@Html.Encode(CuentaUsuario.tablaUsuario.Rows[0]["Nombre"]))</span>
                                     <i class="icon-angle-down"></i>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a href="@Url.Action("LogOff", "Account", new { Area = "Admin"})"><i class="icon-key"></i> Cerrar Sesión</a></li>
                                 </ul>
                             }
-                        }*@
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        }
+                        @*<a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <span class="username">Grupo Ocampo</span>
                             <i class="icon-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="@Url.Action("LogOff", "Account", new { Area = "Admin"})"><i class="icon-key"></i> Cerrar Sesión</a></li>
-                        </ul>
+                        </ul>*@
                     </li>
                 </ul>
             </div>
@@ -77,7 +77,7 @@
         <div class="page-sidebar nav-collapse collapse">
             <ul>
                 <a class="brand" href="@Url.Action("Index", "HomeAdmin")">
-                    <img id="img-logo" src="@Url.Content("~/Content/elements/Logo.png")" alt="logo" style="height: 100px; max-width: 200%; width: 220px;" />
+                    <img id="img-logo" src="@Url.Content("~/Content/elements/Logo.png")" alt="logo" style="height: 115px; max-width: 200%; width: 220px;" />
                 </a>
                 <li>
                     <div class="sidebar-toggler hidden-phone"></div>
