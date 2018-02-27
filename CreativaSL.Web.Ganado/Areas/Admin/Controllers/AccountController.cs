@@ -27,10 +27,11 @@ namespace CreativaSL.Web.Ganado.Areas.Admin.Controllers
                 if (User.Identity.IsAuthenticated)
                 {
                     UsuarioModels usuario = new UsuarioModels();
+                    _Usuario_Datos UsuarioDatos = new _Usuario_Datos();
                     usuario.conexion = Conexion;
                     usuario.cuenta = User.Identity.Name;
-                    UsuarioDatos usuario_datos = new UsuarioDatos();
-                    int TipoUsario = usuario_datos.ObtenerTipoUsuarioByUserName(usuario);
+                   
+                    int TipoUsario = UsuarioDatos.ObtenerTipoUsuarioByUserName(usuario);
                     if (TipoUsario == 1)
                     {
                         return RedirectToAction("Index", "HomeAdmin", new { Area = "Admin" });
@@ -62,7 +63,7 @@ namespace CreativaSL.Web.Ganado.Areas.Admin.Controllers
             if (model.opcion == 1)
             {
                 FormsAuthentication.SignOut();
-                UsuarioDatos usuario_datos = new UsuarioDatos();
+                _Usuario_Datos usuario_datos = new _Usuario_Datos();
                 UsuarioModels usuario = new UsuarioModels();
                 usuario.conexion = Conexion;
                 usuario.cuenta = model.id_usuario;
@@ -140,7 +141,7 @@ namespace CreativaSL.Web.Ganado.Areas.Admin.Controllers
         public ActionResult CheckUserAvailability(string cuenta, string id_usuario)
         {
             UsuarioModels usuario = new UsuarioModels();
-            UsuarioDatos usuario_datos = new UsuarioDatos();
+            _Usuario_Datos usuario_datos = new _Usuario_Datos();
             usuario.conexion = Conexion;
             usuario.cuenta = cuenta;
             usuario.id_usuario = id_usuario;
@@ -151,7 +152,7 @@ namespace CreativaSL.Web.Ganado.Areas.Admin.Controllers
         public ActionResult CheckEmailAvailability(string email, string id_usuario)
         {
             UsuarioModels usuario = new UsuarioModels();
-            UsuarioDatos usuario_datos = new UsuarioDatos();
+            _Usuario_Datos usuario_datos = new _Usuario_Datos();
             usuario.conexion = Conexion;
             usuario.email = email;
             usuario.id_usuario = id_usuario;
@@ -182,7 +183,7 @@ namespace CreativaSL.Web.Ganado.Areas.Admin.Controllers
             try
             {
                 UsuarioModels usuario = new UsuarioModels();
-                UsuarioDatos usuario_datos = new UsuarioDatos();
+                _Usuario_Datos usuario_datos = new _Usuario_Datos();
                 usuario.conexion = Conexion;
                 usuario.email2 = collection["email2"];
                 usuario = usuario_datos.ResetPassword(usuario);

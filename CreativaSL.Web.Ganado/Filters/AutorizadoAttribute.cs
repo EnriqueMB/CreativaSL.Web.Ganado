@@ -22,7 +22,7 @@ namespace CreativaSL.Web.Ganado.Filters
                 if (HttpContext.Current.Session["SessionTipoUsuario"] == null)
                 {
                     UsuarioModels Usuario = new UsuarioModels();
-                    UsuarioDatos usuario_datos = new UsuarioDatos();
+                    _Usuario_Datos usuario_datos = new _Usuario_Datos();
                     Usuario.conexion = Conexion;
                     IPrincipal user = HttpContext.Current.User;
                     Usuario.cuenta = user.Identity.Name;

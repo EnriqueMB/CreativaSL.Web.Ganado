@@ -259,6 +259,20 @@ namespace CreativaSL.Web.Ganado.Models
             get { return _tablaMunicipioCmb; }
             set { _tablaMunicipioCmb = value; }
         }
+        private string  _clvUser;
+
+        public string  clvUser
+        {
+            get { return _clvUser; }
+            set { _clvUser = value; }
+        }
+        private string _passUser;
+
+        public string passUser
+        {
+            get { return _passUser; }
+            set { _passUser = value; }
+        }
 
         private string _NombreUrl;
 
@@ -314,5 +328,9 @@ namespace CreativaSL.Web.Ganado.Models
             get { return _email2; }
             set { _email2 = value; }
         }
+        #region Datos de control
+        public int Resultado { get; set; }
+        public bool Completado { get; set; }
+        #endregion
     }
 }

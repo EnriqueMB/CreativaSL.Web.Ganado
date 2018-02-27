@@ -6,7 +6,7 @@ using Microsoft.ApplicationBlocks.Data;
 
 namespace CreativaSL.Web.Ganado.Models
 {
-    public class UsuarioDatos
+    public class _Usuario_Datos
     {
         public List<TipoUsuarioModels> ObtenerComboTipoUsuario(UsuarioModels datos) 
         {
@@ -16,7 +16,7 @@ namespace CreativaSL.Web.Ganado.Models
                 TipoUsuarioModels item;
                 object[] parametros = { datos.opcion };
                 SqlDataReader dr = null;
-                dr = SqlHelper.ExecuteReader(datos.conexion, "spCSLDB_get_ComboCatTipoUsuario", parametros);
+                dr = SqlHelper.ExecuteReader(datos.conexion, "spCSLDB_get_ComboCatTipoUsuario");
                 while (dr.Read())
                 {
                     item = new TipoUsuarioModels();
@@ -63,20 +63,20 @@ namespace CreativaSL.Web.Ganado.Models
                 dr = SqlHelper.ExecuteReader(datos.conexion, "spCSLDB_get_DetalleUsuarioxID", parametros);
                 while (dr.Read())
                 {
-                    datos.id_usuario = dr["id_usuario"].ToString();
-                    datos.id_tipoUsuario = Int32.Parse(dr["id_tipoUsuario"].ToString());
-                    datos.tipoUsuario = dr["tipoUsuario"].ToString();
+                    datos.id_usuario = dr["id_persona"].ToString();
+                    datos.id_tipoUsuario = Int32.Parse(dr["id_tipoPersona"].ToString());
+                    //datos.tipoUsuario = dr["tipoUsuario"].ToString();
                     datos.nombre = dr["nombre"].ToString();
-                    datos.apPat = dr["apPat"].ToString();
-                    datos.apMat = dr["apMat"].ToString();
-                    datos.fechaNac = DateTime.Parse(dr["fechaNac"].ToString());
+                    datos.apPat = dr["apPaterno"].ToString();
+                    datos.apMat = dr["apMaterno"].ToString();
+                    //datos.fechaNac = DateTime.Parse(dr["fechaNac"].ToString());
                     datos.direccion = dr["direccion"].ToString();
-                    datos.codigoPostal = dr["codigoPostal"].ToString();
+                    //datos.codigoPostal = dr["codigoPostal"].ToString();
                     datos.telefono = dr["telefono"].ToString();
-                    datos.email = dr["email"].ToString();
-                    datos.url_foto = dr["url_foto"].ToString();
-                    datos.cuenta = dr["cuenta"].ToString();
-                    datos.password = "dc89sd989sdd";
+                    datos.email = dr["correo"].ToString();
+                    //datos.url_foto = dr["url_foto"].ToString();
+                    //datos.cuenta = dr["cuenta"].ToString();
+                    //datos.password = "dc89sd989sdd";
                 }
                 return datos;
             }
@@ -99,6 +99,14 @@ namespace CreativaSL.Web.Ganado.Models
                     };
                 object aux = SqlHelper.ExecuteScalar(datos.conexion, "spCSLDB_abc_CatUsuarios", parametros);
                 datos.id_usuario = aux.ToString();
+                if (!string.IsNullOrEmpty(datos.id_usuario))
+                {
+                    datos.Completado = true;
+                }
+                else
+                {
+                    datos.Completado = false;
+                }
                 return datos;
             }
             catch (Exception ex)
