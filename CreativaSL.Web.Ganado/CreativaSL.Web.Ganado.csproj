@@ -2928,6 +2928,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AlmacenEntradaModels.cs" />
     <Compile Include="Models\CatChoferModels.cs" />
     <Compile Include="Models\Comun.cs" />
     <Compile Include="Models\EstadoModels.cs" />
