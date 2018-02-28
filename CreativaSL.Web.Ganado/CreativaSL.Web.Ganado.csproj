@@ -2937,8 +2937,35 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AlmacenEntradaModels.cs" />
+    <Compile Include="Models\CatAlmacenModels.cs" />
     <Compile Include="Models\CatChoferModels.cs" />
+    <Compile Include="Models\CatClienteModels.cs" />
+    <Compile Include="Models\CatConceptoDetalleDocumentosModels.cs" />
+    <Compile Include="Models\CatConceptoNominaModels.cs" />
+    <Compile Include="Models\CatFierroModels.cs" />
+    <Compile Include="Models\CatJaulaModels.cs" />
     <Compile Include="Models\CatLugarModels.cs" />
+    <Compile Include="Models\CatMarcaVehiculoModels.cs" />
+    <Compile Include="Models\CatProductosAlmacenModels.cs" />
+    <Compile Include="Models\CatProductosModels.cs" />
+    <Compile Include="Models\CatProveedorModels.cs" />
+    <Compile Include="Models\CatProveevorAlmacenModels.cs" />
+    <Compile Include="Models\CatRangoPesoCompraModels.cs" />
+    <Compile Include="Models\CatSucursalesModels.cs" />
+    <Compile Include="Models\CatTipoClasificacionModels.cs" />
+    <Compile Include="Models\CatTipoCodigoProductoModels.cs" />
+    <Compile Include="Models\CatTipoCombustibleModels.cs" />
+    <Compile Include="Models\CatTipoConciliacionModels.cs" />
+    <Compile Include="Models\CatTipoDocumentoModels.cs" />
+    <Compile Include="Models\CatTipoEventoEnvioModels.cs" />
+    <Compile Include="Models\CatTipoGanadoPorPesoModels.cs" />
+    <Compile Include="Models\CatTipoProveedorModels.cs" />
+    <Compile Include="Models\CatTipoVehiculoModels.cs" />
+    <Compile Include="Models\CatUnidadMedidaModels.cs" />
+    <Compile Include="Models\CatVehiculoModels.cs" />
+    <Compile Include="Models\ClienteLugarModels.cs" />
+    <Compile Include="Models\CompraAlmacenModels.cs" />
+    <Compile Include="Models\CompraModels.cs" />
     <Compile Include="Models\Comun.cs" />
     <Compile Include="Models\EstadoModels.cs" />
     <Compile Include="Models\MenuModels.cs" />
