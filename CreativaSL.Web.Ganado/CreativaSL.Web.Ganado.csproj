@@ -2498,6 +2498,18 @@
     <Content Include="Content\assets2\vcuenta\vendor\simple-line-icons\css\simple-line-icons.css" />
     <Content Include="Content\assets2\vcuenta\vendor\simple-line-icons\fonts\Simple-Line-Icons.svg" />
     <Content Include="Content\backgroundimage.css" />
+    <Content Include="Content\DataTableFilesexport\buttons.dataTables.min.css" />
+    <Content Include="Content\DataTableFilesexport\buttons.flash.min.js" />
+    <Content Include="Content\DataTableFilesexport\buttons.html5.min.js" />
+    <Content Include="Content\DataTableFilesexport\buttons.print.min.js" />
+    <Content Include="Content\DataTableFilesexport\dataTables.buttons.min.js" />
+    <Content Include="Content\DataTableFilesexport\dataTables.material.min.css" />
+    <Content Include="Content\DataTableFilesexport\jquery.dataTables.min.css" />
+    <Content Include="Content\DataTableFilesexport\jquery.dataTables.min.js" />
+    <Content Include="Content\DataTableFilesexport\jszip.min.js" />
+    <Content Include="Content\DataTableFilesexport\material.min.css" />
+    <Content Include="Content\DataTableFilesexport\pdfmake.min.js" />
+    <Content Include="Content\DataTableFilesexport\vfs_fonts.js" />
     <Content Include="Content\dynamicstyles.css" />
     <Content Include="Content\elements\Logo2.png" />
     <Content Include="Content\elements\Logo.png" />
@@ -2740,6 +2752,7 @@
     <Content Include="Areas\Admin\Views\CatUsuarios\Create.cshtml" />
     <Content Include="Areas\Admin\Views\CatUsuarios\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\CatUsuarios\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Exportar.cshtml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
