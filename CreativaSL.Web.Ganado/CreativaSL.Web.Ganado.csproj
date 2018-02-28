@@ -2991,6 +2991,15 @@
     <Compile Include="Models\EntradaAlmacenModels.cs" />
     <Compile Include="Models\EntregaCombistibleModels.cs" />
     <Compile Include="Models\EstadoModels.cs" />
+    <Compile Include="Models\EventoEnvioDetalleModels.cs" />
+    <Compile Include="Models\EventoEnvioModels.cs" />
+    <Compile Include="Models\ExistenciaProductoAlmacenModels.cs" />
+    <Compile Include="Models\ExistenciaProductosAlmacenPrecioModels.cs" />
+    <Compile Include="Models\FierroCompraModels.cs" />
+    <Compile Include="Models\FleteModels.cs" />
+    <Compile Include="Models\GanadoModels.cs" />
+    <Compile Include="Models\IncidenteFleteModels.cs" />
+    <Compile Include="Models\LicenciaChoferModels.cs" />
     <Compile Include="Models\MenuModels.cs" />
     <Compile Include="Models\MovimientosProductosModels.cs" />
     <Compile Include="Models\MunicipioModels.cs" />
