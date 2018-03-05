@@ -7,6 +7,20 @@ namespace CreativaSL.Web.Ganado.Models
 {
     public class CatClienteModels
     {
+        public CatClienteModels()
+        {
+            _IDCliente = string.Empty;
+            _IDSucursal = string.Empty;
+            _RFC = string.Empty;
+            _NombreRazonSocial = string.Empty;
+            _IDRegimenFiscal = string.Empty;
+            _ListaClientes = new List<CatClienteModels>();
+            Conexion = string.Empty;
+            Usuario = string.Empty;
+            _NombreSucursal = string.Empty;
+            _NombreRegimenFiscal = string.Empty;
+        }
+
         /// <summary>
         /// El identificador de el cliente
         /// </summary>
@@ -65,6 +79,31 @@ namespace CreativaSL.Web.Ganado.Models
             get { return _IDRegimenFiscal; }
             set { _IDRegimenFiscal = value; }
         }
+
+        private List<CatClienteModels> _ListaClientes;
+
+        public List<CatClienteModels> ListaClientes
+        {
+            get { return _ListaClientes; }
+            set { _ListaClientes = value; }
+        }
+
+        private string _NombreSucursal;
+
+        public string NombreSucursal
+        {
+            get { return _NombreSucursal; }
+            set { _NombreSucursal = value; }
+        }
+
+        private string _NombreRegimenFiscal;
+
+        public string NombreRegimenFiscal
+        {
+            get { return _NombreRegimenFiscal; }
+            set { _NombreRegimenFiscal = value; }
+        }
+
 
         #region Datos De Control
         public string Conexion { get; set; }
