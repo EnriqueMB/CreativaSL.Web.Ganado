@@ -9,6 +9,9 @@ namespace CreativaSL.Web.Ganado.Models
 {
     public class CatChoferModels
     {
+        /// <summary>
+        /// El Identificacidor de por chofer
+        /// </summary>
         private string _IDChofer;
 
         public string IDChofer
@@ -16,7 +19,9 @@ namespace CreativaSL.Web.Ganado.Models
             get { return _IDChofer; }
             set { _IDChofer = value; }
         }
-
+        /// <summary>
+        /// El nombre del chofer
+        /// </summary>
         private string _Nombre;
         [Required(ErrorMessage = "El nombre es obligatorio")]
         [Display(Name = "nombre")]
@@ -27,7 +32,9 @@ namespace CreativaSL.Web.Ganado.Models
             get { return _Nombre; }
             set { _Nombre = value; }
         }
-
+        /// <summary>
+        /// El Apellido Parteno del Chofer
+        /// </summary>
         private string _ApPaterno;
         [Required(ErrorMessage = "El apellido paterno es obligatorio")]
         [Display(Name = "apellido paterno")]
@@ -38,7 +45,9 @@ namespace CreativaSL.Web.Ganado.Models
             get { return _ApPaterno; }
             set { _ApPaterno = value; }
         }
-
+        /// <summary>
+        /// El Apellido Materno del Chofer
+        /// </summary>
         private string _ApMaterno;
         [Display(Name = "apellido materno")]
         [StringLength(70, ErrorMessage = "El número de caracteres de {0} debe ser al menos {2} y un maximo de {1}.", MinimumLength = 1)]
@@ -48,7 +57,9 @@ namespace CreativaSL.Web.Ganado.Models
             get { return _ApMaterno; }
             set { _ApMaterno = value; }
         }
-
+        /// <summary>
+        /// Para ver si su Licencia del Chofer si tiene vigencia
+        /// </summary>
         private bool _Licencia;
 
         public bool Licencia
@@ -56,7 +67,9 @@ namespace CreativaSL.Web.Ganado.Models
             get { return _Licencia; }
             set { _Licencia = value; }
         }
-
+        /// <summary>
+        /// Para saber si el chofer no se encuentra en viaje?
+        /// </summary>
         private bool _Estatus;
 
         public bool Estatus

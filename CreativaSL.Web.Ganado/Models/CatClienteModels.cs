@@ -7,6 +7,9 @@ namespace CreativaSL.Web.Ganado.Models
 {
     public class CatClienteModels
     {
+        /// <summary>
+        /// El identificador de el cliente
+        /// </summary>
         private string _IDCliente;
 
         public string IDCliente 
@@ -14,7 +17,9 @@ namespace CreativaSL.Web.Ganado.Models
             get { return _IDCliente; }
             set { _IDCliente = value; }
         }
-
+        /// <summary>
+        /// El identificador por sucursar
+        /// </summary>
         private string _IDSucursal;
 
         public string IDSucursal
@@ -22,7 +27,9 @@ namespace CreativaSL.Web.Ganado.Models
             get { return _IDSucursal; }
             set { _IDSucursal = value; }
         }
-
+        /// <summary>
+        /// EL Registro Federal de Contribuyentes
+        /// </summary>
         private string _RFC;
 
         public string RFC
@@ -30,7 +37,9 @@ namespace CreativaSL.Web.Ganado.Models
             get { return _RFC; }
             set { _RFC = value; }
         }
-
+        /// <summary>
+        /// El nombre con el que se le conoces a una Empresa
+        /// </summary>
         private string _NombreRazonSocial;
 
         public string NombreRazonSocial
@@ -38,7 +47,9 @@ namespace CreativaSL.Web.Ganado.Models
             get { return _NombreRazonSocial; }
             set { _NombreRazonSocial = value; }
         }
-
+        /// <summary>
+        /// Si es persona fisica ó si Empresa
+        /// </summary>
         private bool _EsPersonaFisica;
 
         public bool EsPersonaFisica
