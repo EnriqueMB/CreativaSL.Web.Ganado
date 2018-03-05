@@ -2753,6 +2753,7 @@
     <Content Include="Areas\Admin\Views\CatUsuarios\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\CatUsuarios\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Exportar.cshtml" />
+    <Content Include="Areas\Admin\Views\CatLugar\Index.cshtml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -2943,6 +2944,7 @@
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\CatChoferController.cs" />
     <Compile Include="Areas\Admin\Controllers\CatClienteController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CatLugarController.cs" />
     <Compile Include="Areas\Admin\Controllers\CatUsuariosController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
     <Compile Include="Filters\AutorizadoAttribute.cs" />

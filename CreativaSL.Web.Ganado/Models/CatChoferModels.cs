@@ -10,6 +10,10 @@ namespace CreativaSL.Web.Ganado.Models
     public class CatChoferModels
     {
         public CatChoferModels() {
+          
+            _id_licencia = string.Empty;
+            _numLicencia = string.Empty;
+            _vigencia = DateTime.Now;
             _IDChofer = string.Empty;
             _Nombre = string.Empty;
             _ApPaterno = string.Empty;
@@ -22,6 +26,36 @@ namespace CreativaSL.Web.Ganado.Models
             Completado = false;
             Usuario = string.Empty;
             Opcion = 0;
+        }
+        /// <summary>
+        /// LICENCIA DEL CHOFER
+        /// </summary>
+        private string _id_licencia;
+
+        public string id_licencia
+        {
+            get { return _id_licencia; }
+            set { _id_licencia = value; }
+        }
+       /// <summary>
+       /// NUMERO DE LICENCIA DEL CHOFER
+       /// </summary>
+        private string _numLicencia;
+
+        public string numLicencia
+        {
+            get { return _numLicencia; }
+            set { _numLicencia = value; }
+        }
+        /// <summary>
+        /// VIGENCIA DE LA LICENCIA
+        /// </summary>
+        private DateTime _vigencia;
+
+        public DateTime vigencia
+        {
+            get { return _vigencia; }
+            set { _vigencia = value; }
         }
         private List<CatChoferModels> _ListaChoferes;
 
