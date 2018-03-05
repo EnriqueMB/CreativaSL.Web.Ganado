@@ -7,6 +7,15 @@ namespace CreativaSL.Web.Ganado.Models
 {
     public class CatSucursalesModels
     {
+        public CatSucursalesModels()
+        {
+            _IDSucursal = string.Empty;
+            _IDLugar = string.Empty;
+            _Direccion = string.Empty;
+            _NombreSucursal = string.Empty;
+            Conexion = string.Empty;
+            Usuario = string.Empty;
+        }
         private string _IDSucursal;
 
         public string IDSucursal
@@ -30,6 +39,14 @@ namespace CreativaSL.Web.Ganado.Models
             get { return _Direccion; }
             set { _Direccion = value; }
         }
+        private string _NombreSucursal;
+
+        public string NombreSucursal
+        {
+            get { return _NombreSucursal; }
+            set { _NombreSucursal = value; }
+        }
+
 
         #region Datos De Control
         public string Conexion { get; set; }
