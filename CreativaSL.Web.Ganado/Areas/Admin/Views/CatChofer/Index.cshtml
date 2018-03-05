@@ -57,22 +57,22 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                @foreach (System.Data.DataRow Chofer in Model.TablaDatos.Rows)
+                                                                @foreach (var Chofer in Model.ListaChoferes)
                                                                 {
                                                                     <tr>
-                                                                        <td>@Chofer["NombreChofer"].ToString()</td>
-                                                                        <td>@Chofer["Licencia"].ToString()</td>
-                                                                        @{ var estatus = Convert.ToBoolean(Chofer["Estatus"].ToString()); }
+                                                                        <td>@Chofer.Nombre</td>
+                                                                        <td>@Chofer.Licencia</td>
+                                                                        @{ var estatus = Convert.ToBoolean(Chofer.Estatus); }
                                                                         @if (estatus == true)
                                                                         {
-                                                                            <td><div style="padding:10px; border-radius:50%; color:red"></div></td>
+                                                                            <td style="text-align:center"><div style="padding:5px;margin: auto;width:1px;height:1px; border-radius:50% !important; background:red"></div></td>
                                                                         }
                                                                         else
                                                                         {
-                                                                            <td><div style="padding:10px; border-radius:50%; color:green"></div></td>
+                                                                            <td style="text-align:center"><div style="padding:5px;margin: auto;width:1px;height:1px; border-radius:50% !important; background:green"></div></td>
                                                                         }
-                                                                        <td style="text-align:center;"><a class="btn yellow" href="@Url.Action("Edit", "CatChofer", new { id = Chofer["IDChofer"].ToString() })"><i class="icon-edit"></i></a></td>
-                                                                        <td style="text-align: center;"><a class="btn red delete" href="@Url.Action("Delete", "CatChofer", new { id = Chofer["IDChofer"].ToString() })"><i class="icon-trash"></i></a></td>
+                                                                        <td style="text-align:center;"><a class="btn yellow" href="@Url.Action("Edit", "CatChofer", new { id = Chofer.IDChofer })"><i class="icon-edit"></i></a></td>
+                                                                        <td style="text-align: center;"><a class="btn red delete" href="@Url.Action("Delete", "CatChofer", new { id = Chofer.IDChofer  })"><i class="icon-trash"></i></a></td>
                                                                     </tr>
                                                                 }
                                                             </tbody>
@@ -110,7 +110,9 @@
                     url: url,
                     type: 'POST',
                     dataType: 'json',
-                    success: function (result) { location.reload(true); },
+                    success: function (result) {
+                        location.reload(true);
+                    },
                     error: function () {
                         $('#Error').html('<h3>Ocurrio un error al eliminar este registro<h3>');
                         $('#Error').css("display", "block");

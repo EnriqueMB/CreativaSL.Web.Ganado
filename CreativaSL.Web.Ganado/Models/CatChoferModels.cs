@@ -9,6 +9,28 @@ namespace CreativaSL.Web.Ganado.Models
 {
     public class CatChoferModels
     {
+        public CatChoferModels() {
+            _IDChofer = string.Empty;
+            _Nombre = string.Empty;
+            _ApPaterno = string.Empty;
+            _ApMaterno = string.Empty;
+            _Licencia = false;
+            _Estatus = false;
+            //Datos de control
+            Conexion = string.Empty;
+            Resultado = 0;
+            Completado = false;
+            Usuario = string.Empty;
+            Opcion = 0;
+        }
+        private List<CatChoferModels> _ListaChoferes;
+
+        public List<CatChoferModels> ListaChoferes
+        {
+            get { return _ListaChoferes; }
+            set { _ListaChoferes = value; }
+        }
+
         /// <summary>
         /// El Identificacidor de por chofer
         /// </summary>
@@ -68,7 +90,7 @@ namespace CreativaSL.Web.Ganado.Models
             set { _Licencia = value; }
         }
         /// <summary>
-        /// Para saber si el chofer no se encuentra en viaje?
+        /// Para saber si el chofer no se encuentra en viaje
         /// </summary>
         private bool _Estatus;
 
