@@ -5,8 +5,23 @@ using System.Web;
 
 namespace CreativaSL.Web.Ganado.Models
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class ExistenciaProductoAlmacenModels
     {
+        public ExistenciaProductoAlmacenModels() {
+            _id_almacen = string.Empty;
+            _id_producto = string.Empty;
+            _id_unidadProducto = string.Empty;
+            _existencia = 0;
+            //Datos de control
+            Conexion = string.Empty;
+            Resultado = 0;
+            Completado = false;
+            Usuario = string.Empty;
+            Opcion = 0;
+        }
         private string _id_almacen;
 
         public string id_almacen
