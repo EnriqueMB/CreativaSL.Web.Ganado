@@ -19,6 +19,8 @@ namespace CreativaSL.Web.Ganado.Models
             Usuario = string.Empty;
             _NombreSucursal = string.Empty;
             _NombreRegimenFiscal = string.Empty;
+            _ListaCmbSucursal = new List<CatSucursalesModels>();
+            _ListaRegimenCMB = new List<CFDI_RegimenFiscalModels>();
         }
 
         /// <summary>
@@ -87,6 +89,23 @@ namespace CreativaSL.Web.Ganado.Models
             get { return _ListaClientes; }
             set { _ListaClientes = value; }
         }
+
+        private List<CatSucursalesModels> _ListaCmbSucursal;
+
+        public List<CatSucursalesModels> ListaCmbSucursal
+        {
+            get { return _ListaCmbSucursal; }
+            set { _ListaCmbSucursal = value; }
+        }
+
+        private List<CFDI_RegimenFiscalModels> _ListaRegimenCMB;
+
+        public List<CFDI_RegimenFiscalModels> ListaRegimenCMB
+        {
+            get { return _ListaRegimenCMB; }
+            set { _ListaRegimenCMB = value; }
+        }
+
 
         private string _NombreSucursal;
 

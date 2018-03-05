@@ -1,12 +1,12 @@
 ﻿@model CreativaSL.Web.Ganado.Models.CatClienteModels
 
 @{
-    ViewBag.Title = "Crear Cliente";
+    ViewBag.Title = "Edit";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-
 @section featured
 {
+
     @{
         var message = TempData["message"] ?? string.Empty;
         var typemessage = TempData["typemessage"] ?? string.Empty;
@@ -27,9 +27,9 @@
             <div class="tab-pane">
                 <div class="portlet box blue">
                     <div class="portlet-title">
-                        <div class="caption"><i class="icon-reorder"></i>Nuevo Cliente</div>
+                        <div class="caption"><i class="icon-reorder"></i>Editar Cliente</div>
                     </div>
-                    @using (Html.BeginForm("Create", "CatCliente", FormMethod.Post, new { @class = "form-horizontal", autocomplete = "off" }))
+                    @using (Html.BeginForm("Edit", "CatCliente", FormMethod.Post, new { @class = "form-horizontal", autocomplete = "off" }))
                     {
                         @Html.AntiForgeryToken()
                         @Html.ValidationSummary(true)
@@ -104,8 +104,10 @@
     </div>
 
     <script>
-
-
+        $(document).ready(function () {
+            $("#ListSucursal").val('@Model.IDSucursal');
+            $("#ListRegimen").val('@Model.IDRegimenFiscal');
+        });
         jQuery(document).ready(function () {
             var message = '@message';
             var typemessage = '@typemessage';
@@ -127,22 +129,7 @@
         });
     </script>
     <script type="text/javascript">
-        $(document).ready(function () {
-            try
-            {
-                $("input[type='text']").each(function ()
-                {
-                    $(this).attr("autocomplete", "off");
-                    $(this).val = "";
-                });
-            }
-            catch (e)
-            {
-            }
-        });
         jQuery.validator.methods["date"] = function (value, element) { return true; }
     </script>
 
 }
-
-
