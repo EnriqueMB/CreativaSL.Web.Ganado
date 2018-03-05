@@ -2769,6 +2769,8 @@
     <Content Include="Areas\Admin\Views\CatCliente\Create.cshtml" />
     <Content Include="Areas\Admin\Views\CatCliente\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Test\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CatCliente\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\CatChofer\Edit.cshtml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
