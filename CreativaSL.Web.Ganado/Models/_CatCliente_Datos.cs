@@ -38,6 +38,32 @@ namespace CreativaSL.Web.Ganado.Models
             }
         }
 
+        public CatClienteModels AbcCatClientes(CatClienteModels datos)
+        {
+            try
+            {
+                object[] parametros =
+                {
+                    datos.Opcion, datos.IDCliente, datos.IDSucursal, datos.RFC, datos.NombreRazonSocial, datos.EsPersonaFisica, datos.IDRegimenFiscal, datos.Usuario
+                };
+                object aux = SqlHelper.ExecuteScalar(datos.Conexion, "spCSLDB_Catalogo_ac_CatCliente", parametros);
+                datos.IDCliente = aux.ToString();
+                if (!string.IsNullOrEmpty(datos.IDCliente))
+                {
+                    datos.Completado = true;
+                }
+                else
+                {
+                    datos.Completado = false;
+                }
+                return datos;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public List<CatSucursalesModels> ObteneComboCatSucursal(CatClienteModels Datos)
         {
             try

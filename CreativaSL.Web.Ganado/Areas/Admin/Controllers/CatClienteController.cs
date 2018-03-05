@@ -47,7 +47,15 @@ namespace CreativaSL.Web.Ganado.Areas.Admin.Controllers
             try
             {
                 CatClienteModels Clientes = new CatClienteModels();
+                CatCliente_Datos ClientesDatos = new CatCliente_Datos();
                 Clientes.EsPersonaFisica = true;
+                Clientes.Conexion = Conexion;
+                Clientes.ListaCmbSucursal = ClientesDatos.ObteneComboCatSucursal(Clientes);
+                var list = new SelectList(Clientes.ListaCmbSucursal, "IDSucursal", "NombreSucursal");
+                ViewData["cmbSucursal"] = list;
+                Clientes.ListaRegimenCMB = ClientesDatos.ObtenerComboRegimenFiscal(Clientes);
+                var list1 = new SelectList(Clientes.ListaRegimenCMB, "Clave", "Descripcion");
+                ViewData["cmbRegimenFiscal"] = list1;
                 return View(Clientes);
             }
             catch (Exception)
@@ -65,13 +73,36 @@ namespace CreativaSL.Web.Ganado.Areas.Admin.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                CatClienteModels Cliente = new CatClienteModels();
+                CatCliente_Datos ClienteDatos = new CatCliente_Datos();
+                Cliente.Conexion = Conexion;
+                Cliente.Opcion = 1;
+                Cliente.IDSucursal = collection["ListaCmbSucursal"];
+                Cliente.IDRegimenFiscal = collection["ListaRegimenCMB"];
+                Cliente.NombreRazonSocial = collection["NombreRazonSocial"];
+                Cliente.RFC = collection["RFC"];
+                Cliente.EsPersonaFisica = collection["EsPersonaFisica"].StartsWith("true");
+                Cliente.Usuario = User.Identity.Name;
+                Cliente = ClienteDatos.AbcCatClientes(Cliente);
+                if (Cliente.Completado == true)
+                {
+                    TempData["typemessage"] = "1";
+                    TempData["message"] = "Los datos se guardarón correctamente.";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    TempData["typemessage"] = "2";
+                    TempData["message"] = "Ocurrio un error al intentar guardar los datos. Intente más tarde.";
+                    return RedirectToAction("Create");
+                }
+               
             }
             catch
             {
-                return View();
+                TempData["typemessage"] = "2";
+                TempData["message"] = "Ocurrio un error al intentar guardar los datos. Contacte a soporte técnico.";
+                return RedirectToAction("Index");
             }
         }
 
