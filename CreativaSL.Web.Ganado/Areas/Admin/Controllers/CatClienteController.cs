@@ -175,24 +175,61 @@ namespace CreativaSL.Web.Ganado.Areas.Admin.Controllers
         }
 
         // GET: Admin/CatClientes/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string id, string id2)
         {
-            return View();
+            try
+            {
+                return View();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         // POST: Admin/CatClientes/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(string id, string id2, FormCollection collection)
         {
             try
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                CatClienteModels Cliente = new CatClienteModels();
+                CatCliente_Datos ClienteDatos = new CatCliente_Datos();
+                Cliente.Conexion = Conexion;
+                Cliente.Usuario = User.Identity.Name;
+                Cliente.IDCliente = id;
+                Cliente.IDSucursal = id2;
+                ClienteDatos.EliminarCliente(Cliente);
+                TempData["typemessage"] = "1";
+                TempData["message"] = "El registro se ha eliminado correctamente";
+                return Json("");
             }
             catch
             {
                 return View();
+            }
+        }
+        // POST: Admin/CatClientes/ObtenerDatosRegimen/5
+        [HttpPost]
+        public ActionResult ObtenerDatosRegimen(string id)
+        {
+            try
+            {
+                CatClienteModels Cliente = new CatClienteModels();
+                CatCliente_Datos ClienteDatos = new CatCliente_Datos();
+
+                List<CFDI_RegimenFiscalModels> listaDatosRegimen = new List<CFDI_RegimenFiscalModels>();
+                Cliente.Conexion = Conexion;
+                Cliente.IDRegimenFiscal = id;
+                
+                listaDatosRegimen = ClienteDatos.ObtenerDatosRegimen(Cliente);
+                return Json(listaDatosRegimen, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                ex.Message.ToString();
+                return Json("", JsonRequestBehavior.AllowGet);
             }
         }
     }
