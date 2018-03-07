@@ -1,9 +1,8 @@
-﻿@model CreativaSL.Web.Ganado.Models.CatLugarModels
+﻿@model CreativaSL.Web.Ganado.Models.CatJaulaModels
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-
 
 
 @section featured
@@ -30,13 +29,13 @@
                     <div class="span12">
                         <div class="portlet box blue">
                             <div class="portlet-title">
-                                <div class="caption"><i class="icon-edit"></i>Lugares</div>
+                                <div class="caption"><i class="icon-edit"></i>Jaula</div>
                             </div>
                             <div class="portlet-body">
                                 <div class="clearfix">
                                     <div class="btn-group">
                                         <div class="span12">
-                                            <a href="@Url.Action("Create","CatLugar")" class="btn btn-default green"><i class="icon-plus"></i> Nuevo Lugar</a>
+                                            <a href="@Url.Action("Create","CatJaula")" class="btn btn-default green"><i class="icon-plus"></i> Nueva Jaula</a>
                                         </div>
                                     </div>
                                 </div>
@@ -51,24 +50,32 @@
                                                             <thead class="flip-content">
                                                                 <tr>
                                                                     <th>Nombre</th>
-                                                                    <th>Latitud</th>
-                                                                    <th>Longitud</th>
+                                                                    <th>Matricula</th>
+                                                                    <th>Estatus</th>
                                                                     <th>Editar</th>
                                                                     <th>Eliminar</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                @foreach (var lugar in Model.listaLugares)
+                                                                @foreach (var jaula in Model.listaJaulas)
                                                                 {
                                                                     <tr>
-                                                                        <td>@lugar.descripcion</td>
-                                                                        <td>@lugar.latitud</td>
-                                                                        <td>@lugar.longitud</td>
-                                                                       
-                                                                        <td style="text-align:center;"><a class="btn yellow" href="@Url.Action("Edit", "CatLugar", new { id = lugar.id_lugar})"><i class="icon-edit"></i></a></td>
-                                                                        <td style="text-align: center;"><a class="btn red delete" href="@Url.Action("Delete", "CatLugar", new { id = lugar.id_lugar })"><i class="icon-trash"></i></a></td>
+                                                                        <td>@jaula.nombreSucursal</td>
+                                                                        <td>@jaula.Matricula</td>
+                                                                        @{ var estatus = Convert.ToBoolean(jaula.Estatus); }
+                                                                        @if (estatus == true)
+                                                                        {
+                                                                            <td style="text-align:center"><div style="padding:9px;margin: auto;width:1px;height:1px; border-radius:50% !important; background:red"></div></td>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <td style="text-align:center"><div style="padding:9px;margin: auto;width:1px;height:1px; border-radius:50% !important; background:green"></div></td>
+                                                                        }
+
+                                                                        <td style="text-align:center;"><a class="btn yellow" href="@Url.Action("Edit", "CatJaula", new { id = jaula.IDJaula})"><i class="icon-edit"></i></a></td>
+                                                                        <td style="text-align: center;"><a class="btn red delete" href="@Url.Action("Delete", "CatJaula", new { id = jaula.IDJaula })"><i class="icon-trash"></i></a></td>
                                                                     </tr>
-                                                                            }
+                                                                }
                                                             </tbody>
                                                         </table>
                                                     </section>
@@ -140,3 +147,4 @@
 
     </script>
 }
+
