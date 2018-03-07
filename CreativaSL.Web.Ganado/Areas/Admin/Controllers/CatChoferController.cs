@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using CreativaSL.Web.Ganado.Models;
 using System.Data;
+using System.Globalization;
 
 namespace CreativaSL.Web.Ganado.Areas.Admin.Controllers
 {
@@ -22,7 +23,8 @@ namespace CreativaSL.Web.Ganado.Areas.Admin.Controllers
                 CatChoferModels Chofer = new CatChoferModels();
                 CatChofer_Datos ChoferDatos = new CatChofer_Datos();
                 Chofer.Conexion = Conexion;
-                Chofer = ChoferDatos.ObtenerCatChofer(Chofer);
+
+                Chofer.ListaChoferes = ChoferDatos.ObtenerCatChofer(Chofer);
                 return View(Chofer);
             }
             catch (Exception)
@@ -41,6 +43,8 @@ namespace CreativaSL.Web.Ganado.Areas.Admin.Controllers
             try
             {
                 CatChoferModels Chofer = new CatChoferModels();
+                CatChofer_Datos ChoferDatos = new CatChofer_Datos();
+              
                 Chofer.Licencia = Convert.ToBoolean("true");
                 return View(Chofer);
             }
@@ -58,39 +62,113 @@ namespace CreativaSL.Web.Ganado.Areas.Admin.Controllers
         public ActionResult Create(FormCollection collection)
         {
             try
-            {
-                // TODO: Add insert logic here
+                {
+                CatChoferModels Chofer = new CatChoferModels();
+                CatChofer_Datos ChoferDatos = new CatChofer_Datos();
 
+                
+                Chofer.Conexion = Conexion;
+                Chofer.Licencia = collection["Licencia"].StartsWith("true");
+                Chofer.numLicencia = collection["numLicencia"];
+                Chofer.vigencia = DateTime.ParseExact(collection["vigencia"], "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                Chofer.Nombre = collection["nombre"];
+                Chofer.ApPaterno = collection["ApPaterno"];
+                Chofer.ApMaterno = collection["ApMaterno"];
+                Chofer.Usuario = User.Identity.Name;
+                Chofer.Opcion = 1;
+                Chofer = ChoferDatos.AbcCatChofer(Chofer);
+
+                //Si abc fue completado correctamente
+                if (Chofer.Completado == true)
+                {
+                    TempData["typemessage"] = "1";
+                    TempData["message"] = "El registro se guardo correctamente.";
+
+                }
+                else
+                {
+                    TempData["typemessage"] = "2";
+                    TempData["message"] = "Ocurrió un error al guardar el registro.";
+                }
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                CatChoferModels Chofer = new CatChoferModels();
+                Chofer.TablaDatos = new DataTable();
+                TempData["typemessage"] = "2";
+                TempData["message"] = "No se pudo guardar los datos. Por favor contacte a soporte técnico";
+                return View(Chofer);
             }
         }
 
         // GET: Admin/CatChofer/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Admin/CatChofer/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        //======================== EDITAR ===========================
+        //Obtiene el detalle del registro del chofer para ser editado
+        //===========================================================
+        public ActionResult Edit(string id)
         {
             try
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                CatChoferModels Chofer = new CatChoferModels();
+                CatChofer_Datos ChoferDatos = new CatChofer_Datos();
+                Chofer.IDChofer = id;
+                Chofer.Conexion = Conexion;
+                Chofer = ChoferDatos.ObtenerDetalleCatChofer(Chofer);
+                return View(Chofer);
             }
-            catch
+            catch (Exception)
             {
-                return View();
+                CatChoferModels Chofer = new CatChoferModels();
+                Chofer.TablaDatos = new DataTable();
+                TempData["typemessage"] = "2";
+                TempData["message"] = "No se puede cargar la vista";
+                return View(Chofer);
             }
         }
 
+        // POST: Admin/CatChofer/Edit/5
+        //Obtiene los datos del registro del chofer para ser editado
+        [HttpPost]
+        public ActionResult Edit(string id, FormCollection collection)
+        {
+            try
+            {
+                CatChoferModels Chofer = new CatChoferModels();
+                CatChofer_Datos ChoferDatos = new CatChofer_Datos();
+                Chofer.Conexion = Conexion;
+                Chofer.IDChofer = id;
+                Chofer.Nombre = collection["nombre"];
+                Chofer.ApPaterno = collection["ApPaterno"];
+                Chofer.ApMaterno = collection["ApMaterno"];
+                Chofer.Licencia = collection["Licencia"].StartsWith("true");
+                Chofer.Usuario = User.Identity.Name;
+                Chofer.Opcion = 2;
+                Chofer = ChoferDatos.AbcCatChofer(Chofer);
+                //Si abc fue completado correctamente
+                if (Chofer.Completado == true)
+                {
+                    TempData["typemessage"] = "1";
+                    TempData["message"] = "El registro se guardo correctamente.";
+
+                }
+                else
+                {
+                    TempData["typemessage"] = "2";
+                    TempData["message"] = "Ocurrió un error al guardar el registro.";
+                }
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                CatChoferModels Chofer = new CatChoferModels();
+                Chofer.TablaDatos = new DataTable();
+                TempData["typemessage"] = "2";
+                TempData["message"] = "No se pudo guardar los datos. Por favor contacte a soporte técnico";
+                return View(Chofer);
+            }
+        }
+        //==============================ELIMINAR CHOFER =================================
         // GET: Admin/CatChofer/Delete/5
         public ActionResult Delete(int id)
         {
@@ -98,18 +176,33 @@ namespace CreativaSL.Web.Ganado.Areas.Admin.Controllers
         }
 
         // POST: Admin/CatChofer/Delete/5
+        //recibe el id del chofer para ser eliminado
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(string id, FormCollection collection)
         {
             try
             {
+                CatChoferModels Chofer = new CatChoferModels();
+                CatChofer_Datos ChoferDatos = new CatChofer_Datos();
+                Chofer.Conexion = Conexion;
+                Chofer.IDChofer = id;
+                Chofer.Usuario = User.Identity.Name;
+                Chofer = ChoferDatos.EliminarChofer(Chofer);
+                TempData["typemessage"] = "1";
+                TempData["message"] = "El registro se ha eliminado correctamente";
+                return Json("");
                 // TODO: Add delete logic here
 
-                return RedirectToAction("Index");
+              
             }
             catch
             {
-                return View();
+                CatChoferModels Chofer = new CatChoferModels();
+                Chofer.TablaDatos = new DataTable();
+                TempData["typemessage"] = "2";
+                TempData["message"] = "No se pudo borrar los datos. Por favor contacte a soporte técnico";
+                return Json("");
+               
             }
         }
     }

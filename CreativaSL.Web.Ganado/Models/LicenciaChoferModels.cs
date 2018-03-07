@@ -7,6 +7,18 @@ namespace CreativaSL.Web.Ganado.Models
 {
     public class LicenciaChoferModels
     {
+        public LicenciaChoferModels() {
+            _id_chofer = string.Empty;
+            _id_licencia = string.Empty;
+            _numLicencia = string.Empty;
+            _vigencia = DateTime.Now;
+            //Datos de control
+            Conexion = string.Empty;
+            Resultado = 0;
+            Completado = false;
+            Usuario = string.Empty;
+            Opcion = 0;
+        }
         private string _id_licencia;
 
         public string id_licencia
