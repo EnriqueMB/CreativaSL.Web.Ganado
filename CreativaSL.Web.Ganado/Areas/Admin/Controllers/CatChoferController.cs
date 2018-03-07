@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using CreativaSL.Web.Ganado.Models;
 using System.Data;
+using System.Globalization;
 
 namespace CreativaSL.Web.Ganado.Areas.Admin.Controllers
 {
@@ -43,6 +44,7 @@ namespace CreativaSL.Web.Ganado.Areas.Admin.Controllers
             {
                 CatChoferModels Chofer = new CatChoferModels();
                 CatChofer_Datos ChoferDatos = new CatChofer_Datos();
+              
                 Chofer.Licencia = Convert.ToBoolean("true");
                 return View(Chofer);
             }
@@ -60,11 +62,15 @@ namespace CreativaSL.Web.Ganado.Areas.Admin.Controllers
         public ActionResult Create(FormCollection collection)
         {
             try
-            {
+                {
                 CatChoferModels Chofer = new CatChoferModels();
                 CatChofer_Datos ChoferDatos = new CatChofer_Datos();
+
+                
                 Chofer.Conexion = Conexion;
                 Chofer.Licencia = collection["Licencia"].StartsWith("true");
+                Chofer.numLicencia = collection["numLicencia"];
+                Chofer.vigencia = DateTime.ParseExact(collection["vigencia"], "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 Chofer.Nombre = collection["nombre"];
                 Chofer.ApPaterno = collection["ApPaterno"];
                 Chofer.ApMaterno = collection["ApMaterno"];

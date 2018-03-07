@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -21,6 +22,7 @@ namespace CreativaSL.Web.Ganado.Models
             _NombreRegimenFiscal = string.Empty;
             _ListaCmbSucursal = new List<CatSucursalesModels>();
             _ListaRegimenCMB = new List<CFDI_RegimenFiscalModels>();
+            _DatosRegimen = new List<CFDI_RegimenFiscalModels>();
         }
 
         /// <summary>
@@ -47,7 +49,10 @@ namespace CreativaSL.Web.Ganado.Models
         /// EL Registro Federal de Contribuyentes
         /// </summary>
         private string _RFC;
-
+        [Required(ErrorMessage = "El rfc es obligatorio")]
+        [Display(Name = "rfc")]
+        [StringLength(20, ErrorMessage = "El número de caracteres de {0} debe ser al menos {2} y un maximo de {1}.", MinimumLength = 1)]
+        [RegularExpression(@"^[A-Za-záéíóúñÁÉÍÓÚÑ0-9\(\)\-\,\.\;\:\s]*$", ErrorMessage = "Solo Letras y números")]
         public string RFC
         {
             get { return _RFC; }
@@ -57,7 +62,10 @@ namespace CreativaSL.Web.Ganado.Models
         /// El nombre con el que se le conoces a una Empresa
         /// </summary>
         private string _NombreRazonSocial;
-
+        [Required(ErrorMessage = "Razón social es obligatorio")]
+        [Display(Name = "Razón social")]
+        [StringLength(300, ErrorMessage = "El número de caracteres de {0} debe ser al menos {2} y un maximo de {1}.", MinimumLength = 1)]
+        [RegularExpression(@"^[A-Za-záéíóúñÁÉÍÓÚÑ0-9\(\)\-\,\.\;\:\s]*$", ErrorMessage = "Solo Letras y números")]
         public string NombreRazonSocial
         {
             get { return _NombreRazonSocial; }
@@ -91,7 +99,8 @@ namespace CreativaSL.Web.Ganado.Models
         }
 
         private List<CatSucursalesModels> _ListaCmbSucursal;
-
+        [Required(ErrorMessage = "La Sucursal es obligatorio")]
+        [Display(Name = "Sucursal")]
         public List<CatSucursalesModels> ListaCmbSucursal
         {
             get { return _ListaCmbSucursal; }
@@ -99,13 +108,21 @@ namespace CreativaSL.Web.Ganado.Models
         }
 
         private List<CFDI_RegimenFiscalModels> _ListaRegimenCMB;
-
+        [Required(ErrorMessage = "El régimien fiscal es obligatorio")]
+        [Display(Name = "Régimen Fiscal")]
         public List<CFDI_RegimenFiscalModels> ListaRegimenCMB
         {
             get { return _ListaRegimenCMB; }
             set { _ListaRegimenCMB = value; }
         }
 
+        private List<CFDI_RegimenFiscalModels> _DatosRegimen;
+        
+        public List<CFDI_RegimenFiscalModels> DatosRegimen
+        {
+            get { return _DatosRegimen; }
+            set { _DatosRegimen = value; }
+        }
 
         private string _NombreSucursal;
 

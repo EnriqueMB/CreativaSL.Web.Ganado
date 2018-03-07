@@ -74,6 +74,22 @@ namespace CreativaSL.Web.Ganado.Models
             get { return _ListaRegimen; }
             set { _ListaRegimen = value; }
         }
+        private string _Fechafin;
+
+        public string FechaFin
+        {
+            get { return _Fechafin; }
+            set { _Fechafin = value; }
+        }
+
+        private string _FechaInicio;
+
+        public string FechaInicio
+        {
+            get { return _FechaInicio; }
+            set { _FechaInicio = value; }
+        }
+
 
         #region Datos De Control
         public string Conexion { get; set; }

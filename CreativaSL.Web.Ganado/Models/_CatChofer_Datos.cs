@@ -41,7 +41,7 @@ namespace CreativaSL.Web.Ganado.Models
             {
                 object[] parametros =
                 {
-                    datos.Opcion, datos.IDChofer, datos.Nombre, datos.ApPaterno, datos.ApMaterno,datos.Licencia, datos.Usuario
+                    datos.Opcion, datos.IDChofer, datos.Nombre, datos.ApPaterno, datos.ApMaterno,datos.Licencia,datos.numLicencia,datos.vigencia, datos.Usuario
                 };
                 object aux = SqlHelper.ExecuteScalar(datos.Conexion, "EM_spCSLDB_abc_Chofer", parametros);
                 datos.IDChofer = aux.ToString();
