@@ -79,6 +79,27 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row-fluid" id="licencia-cont" style="">
+                                <div class="span6">
+                                    <div class="control-group">
+                                        <label class="control-label">Número de licencia</label>
+                                        <div class="controls">
+                                            @Html.TextBoxFor(model => model.numLicencia, new { id = "numLicencia", @class = "span12 m-wrap" })
+                                            <span class="help-bolck">Ingrese el número de licencia</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="span6">
+                                    <div class="control-group">
+                                        <label class="control-label">Vigencia</label>
+                                        <div id="datetimepicker4" class="input-append date calendar">
+                                            @Html.TextBoxFor(model => model.vigencia, "{0:dd/MM/yyyy}", new { id = "vigencia", @class = "span12 m-wrap", @readonly = "readonly" })
+                                            @Html.ValidationMessageFor(model => model.vigencia)
+                                            <span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="form-actions">
                                 <input type="submit" value="Guardar" class="btn green">
                                 <a href="@Url.Action("Index","CatChofer")" class="btn btn-default red"><i class="icon-prev"></i>Cancelar</a>
@@ -94,6 +115,10 @@
 
 
         jQuery(document).ready(function () {
+            $('#Licencia').change(function () {
+                $('#licencia-cont').toggle(1000);
+
+            });
             var message = '@message';
             var typemessage = '@typemessage';
 

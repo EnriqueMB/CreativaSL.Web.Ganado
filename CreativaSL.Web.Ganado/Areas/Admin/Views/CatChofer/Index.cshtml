@@ -65,11 +65,11 @@
                                                                         @{ var estatus = Convert.ToBoolean(Chofer.Estatus); }
                                                                         @if (estatus == true)
                                                                         {
-                                                                            <td style="text-align:center"><div style="padding:5px;margin: auto;width:1px;height:1px; border-radius:50% !important; background:red"></div></td>
+                                                                            <td style="text-align:center"><div style="padding:9px;margin: auto;width:1px;height:1px; border-radius:50% !important; background:red"></div></td>
                                                                         }
                                                                         else
                                                                         {
-                                                                            <td style="text-align:center"><div style="padding:5px;margin: auto;width:1px;height:1px; border-radius:50% !important; background:green"></div></td>
+                                                                            <td style="text-align:center"><div style="padding:9px;margin: auto;width:1px;height:1px; border-radius:50% !important; background:green"></div></td>
                                                                         }
                                                                         <td style="text-align:center;"><a class="btn yellow" href="@Url.Action("Edit", "CatChofer", new { id = Chofer.IDChofer })"><i class="icon-edit"></i></a></td>
                                                                         <td style="text-align: center;"><a class="btn red delete" href="@Url.Action("Delete", "CatChofer", new { id = Chofer.IDChofer  })"><i class="icon-trash"></i></a></td>

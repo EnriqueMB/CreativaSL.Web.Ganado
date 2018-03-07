@@ -2,11 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
-using System.Linq;
-using System.Web;
-using CreativaSL.Web.Ganado.Models;
 
-namespace CreativaSL.Web.Ganado.Areas.Admin.Models.Compra
+namespace CreativaSL.Web.Ganado.Models
 {
     public class CompraModels
     {
