@@ -2773,6 +2773,10 @@
     <Content Include="Areas\Admin\Views\CatLugar\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Test\Index.cshtml" />
     <Content Include="Areas\Admin\Views\CatChofer\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\CatFierro\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\CatFierro\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Compra\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Compra\Index.cshtml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -2967,6 +2971,8 @@
     <Compile Include="Areas\Admin\Controllers\CatLugarController.cs" />
     <Compile Include="Areas\Admin\Controllers\CatUsuariosController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
+    <Compile Include="Areas\Admin\Models\Compra\CompraModels.cs" />
+    <Compile Include="Areas\Admin\Models\Compra\_Compra_Datos.cs" />
     <Compile Include="Filters\AutorizadoAttribute.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -3050,6 +3056,7 @@
     <Compile Include="Models\UPPProvedorModels.cs" />
     <Compile Include="Models\UsuarioModels.cs" />
     <Compile Include="Models\VentaGanadoModels.cs" />
+    <Compile Include="Models\VentaModels.cs" />
     <Compile Include="Models\_CatChofer_Datos.cs" />
     <Compile Include="Models\_CatCliente_Datos.cs" />
     <Compile Include="Models\_CatFierro_Datos.cs" />
