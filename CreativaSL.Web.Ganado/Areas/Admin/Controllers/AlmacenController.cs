@@ -65,7 +65,22 @@ namespace CreativaSL.Web.Ganado.Areas.Admin.Controllers
         // GET: Admin/Almacen/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            try
+            {
+                CatAlmacenModels Almacen = new CatAlmacenModels();
+                //CatChofer_Datos ChoferDatos = new CatChofer_Datos();
+                //Chofer.IDChofer = id;
+                //Chofer.Conexion = Conexion;
+                //Chofer = ChoferDatos.ObtenerDetalleCatChofer(Chofer);
+                return View(Almacen);
+            }
+            catch (Exception)
+            {
+                CatAlmacenModels Almacen = new CatAlmacenModels();
+                TempData["typemessage"] = "2";
+                TempData["message"] = "No se puede cargar la vista";
+                return View(Almacen);
+            }
         }
 
         // POST: Admin/Almacen/Edit/5
