@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 
@@ -101,6 +102,8 @@ namespace CreativaSL.Web.Ganado.Models
                     datos.ApPaterno = dr["ApPaterno"].ToString();
                     datos.ApMaterno = dr["ApMaterno"].ToString();
                     datos.Licencia = dr.GetBoolean(dr.GetOrdinal("Licencia"));
+                    datos.numLicencia = dr["numLicencia"].ToString();
+                    datos.vigencia = dr.GetDateTime(dr.GetOrdinal("vigencia"));
                 }
                 return datos;
             }

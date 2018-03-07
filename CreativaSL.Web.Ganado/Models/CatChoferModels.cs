@@ -41,7 +41,10 @@ namespace CreativaSL.Web.Ganado.Models
        /// NUMERO DE LICENCIA DEL CHOFER
        /// </summary>
         private string _numLicencia;
-
+        
+        
+        [StringLength(20, ErrorMessage = "El número de caracteres de {0} debe ser al menos {2} y un maximo de {1}.", MinimumLength = 1)]
+        [RegularExpression(@"^[A-Za-záéíóúñÁÉÍÓÚÑ\s]*$", ErrorMessage = "Solo Letras")]
         public string numLicencia
         {
             get { return _numLicencia; }

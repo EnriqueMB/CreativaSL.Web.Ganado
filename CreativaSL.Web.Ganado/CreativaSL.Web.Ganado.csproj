@@ -2772,6 +2772,8 @@
     <Content Include="Areas\Admin\Views\CatLugar\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Test\Index.cshtml" />
     <Content Include="Areas\Admin\Views\CatChofer\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\CatLugar\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\CatLugar\Edit.cshtml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -2972,6 +2974,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AlmacenEntradaModels.cs" />
+    <Compile Include="Models\CatEstadoModels.cs" />
+    <Compile Include="Models\CatMunicipioModels.cs" />
+    <Compile Include="Models\CatPaisModels.cs" />
     <Compile Include="Models\CFDI_FormaPagoModels.cs" />
     <Compile Include="Models\CFDI_ImpuestoModels.cs" />
     <Compile Include="Models\CFDI_MetodoPagoModels.cs" />

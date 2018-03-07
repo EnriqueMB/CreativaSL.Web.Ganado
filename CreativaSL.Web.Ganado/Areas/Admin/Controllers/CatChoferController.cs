@@ -142,6 +142,8 @@ namespace CreativaSL.Web.Ganado.Areas.Admin.Controllers
                 Chofer.ApPaterno = collection["ApPaterno"];
                 Chofer.ApMaterno = collection["ApMaterno"];
                 Chofer.Licencia = collection["Licencia"].StartsWith("true");
+                Chofer.numLicencia = collection["numLicencia"];
+                Chofer.vigencia = DateTime.ParseExact(collection["vigencia"], "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 Chofer.Usuario = User.Identity.Name;
                 Chofer.Opcion = 2;
                 Chofer = ChoferDatos.AbcCatChofer(Chofer);
