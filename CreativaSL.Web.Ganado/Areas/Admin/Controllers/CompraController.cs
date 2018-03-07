@@ -4,7 +4,7 @@ using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using CreativaSL.Web.Ganado.Areas.Admin.Models.Compra;
+using CreativaSL.Web.Ganado.Models;
 
 namespace CreativaSL.Web.Ganado.Areas.Admin.Controllers
 {
@@ -43,7 +43,7 @@ namespace CreativaSL.Web.Ganado.Areas.Admin.Controllers
                 _Compra_Datos CompraDatos = new _Compra_Datos();
                 Compra.Conexion = Conexion;
                 Compra.TablaProveedoresCmb = CompraDatos.ObtenerListadoProveedores(Compra);
-                var ListProveedores = new SelectList(Compra.TablaProveedoresCmb, "id_proveedor", "tipoUsuario");
+                var ListProveedores = new SelectList(Compra.TablaProveedoresCmb, "id_proveedor", "NombreProveedor");
                 ViewData["cmbProveedores"] = ListProveedores;
                 return View();
             }
