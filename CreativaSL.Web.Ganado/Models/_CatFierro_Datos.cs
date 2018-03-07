@@ -32,7 +32,7 @@ namespace CreativaSL.Web.Ganado.Models
                     Item.ImgFierro = !dr.IsDBNull(dr.GetOrdinal("ImgFierro")) ? dr.GetString(dr.GetOrdinal("ImgFierro")) : string.Empty;
                     Item.Observaciones = !dr.IsDBNull(dr.GetOrdinal("Observaciones")) ? dr.GetString(dr.GetOrdinal("Observaciones")) : string.Empty;
                     Bitmap bmpFromString = Item.ImgFierro.Base64StringToBitmap();
-                    Item.ImagenContruida = bmpFromString.ToBase64ImageTag(ImageFormat.Jpeg);
+                    Item.ImagenContruida = bmpFromString.ToBase64ImageTag(ImageFormat.Png);
                     Lista.Add(Item);
                 }
                 datos.ListaFierro = Lista;
