@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
-using CreativaSL.Web.Ganado.Areas.Admin.Models.Compra;
 using Microsoft.ApplicationBlocks.Data;
-using CreativaSL.Web.Ganado.Models;
 using System.Data.SqlClient;
 
-namespace CreativaSL.Web.Ganado.Areas.Admin.Models.Compra
+namespace CreativaSL.Web.Ganado.Models
 {
     public class _Compra_Datos
     {   
@@ -40,6 +36,7 @@ namespace CreativaSL.Web.Ganado.Areas.Admin.Models.Compra
                     throw ex;
                 }
             }
+       
         /// <summary>
         /// Obtiene un listado de todos los proveedores dados de alta
         /// </summary>
@@ -49,19 +46,20 @@ namespace CreativaSL.Web.Ganado.Areas.Admin.Models.Compra
         {
             try
             {
-                List<CatProveedorModels> lista = new List<CatProveedorModels>();
+                List<CatProveedorModels> ListaProveedores = new List<CatProveedorModels>();
                 CatProveedorModels Proveedor;
                 object[] parametros = {  };
                 SqlDataReader dr = null;
-                dr = SqlHelper.ExecuteReader(Compra.Conexion, "spCSLDB_get_ComboCatTipoUsuario");
+                dr = SqlHelper.ExecuteReader(Compra.Conexion, "spCSLDB_VENTAS_GetProveedores");
                 while (dr.Read())
                 {
                     Proveedor = new CatProveedorModels();
                     Proveedor.IDProveedor       = dr["id_proveedor"].ToString();
-                    Proveedor.NombreRazonSocial = dr["nombreRazonSocial"].ToString();
-                    lista.Add(Proveedor);
+                    Proveedor.NombreRazonSocial = dr["NombreProveedor"].ToString();
+                    Proveedor.IDTipoProveedor   = Int32.Parse(dr["id_tipoProveedor"].ToString());
+                    ListaProveedores.Add(Proveedor);
                 }
-                return lista;
+                return ListaProveedores;
             }
             catch (Exception ex)
             {

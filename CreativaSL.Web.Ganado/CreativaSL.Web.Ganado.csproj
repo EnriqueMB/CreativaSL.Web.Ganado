@@ -218,6 +218,10 @@
     <Content Include="Content\assets2\css\bootstrap.min.css" />
     <Content Include="Content\assets2\css\component.css" />
     <Content Include="Content\assets2\css\cropper.min.css" />
+    <Content Include="Content\assets2\css\cssWizard\plugins.css" />
+    <Content Include="Content\assets2\css\cssWizard\print.css" />
+    <Content Include="Content\assets2\css\cssWizard\styles-responsive.css" />
+    <Content Include="Content\assets2\css\cssWizard\styles.css" />
     <Content Include="Content\assets2\css\fonts\font.css" />
     <Content Include="Content\assets2\css\images\ui-bg_glass_75_e6e6e6_1x400.png" />
     <Content Include="Content\assets2\css\img\portlet-reload-icon-white.png" />
@@ -1621,6 +1625,7 @@
     <Content Include="Content\assets2\plugins\font-awesome\docs\design.html" />
     <Content Include="Content\assets2\plugins\font-awesome\docs\index.html" />
     <Content Include="Content\assets2\plugins\font-awesome\docs\test.html" />
+    <Content Include="Content\assets2\plugins\form-wizard.js" />
     <Content Include="Content\assets2\plugins\fullcalendar\changelog.txt" />
     <Content Include="Content\assets2\plugins\fullcalendar\demos\agenda-views.html" />
     <Content Include="Content\assets2\plugins\fullcalendar\demos\basic-views.html" />
@@ -2773,10 +2778,6 @@
     <Content Include="Areas\Admin\Views\CatLugar\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Test\Index.cshtml" />
     <Content Include="Areas\Admin\Views\CatChofer\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\CatFierro\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\CatFierro\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Compra\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Compra\Index.cshtml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -2964,6 +2965,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\CompraAlmacenController.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\CatChoferController.cs" />
     <Compile Include="Areas\Admin\Controllers\CatClienteController.cs" />
@@ -2973,14 +2975,17 @@
     <Compile Include="Areas\Admin\Controllers\CompraController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\TestController.cs" />
-    <Compile Include="Areas\Admin\Models\Compra\CompraModels.cs" />
-    <Compile Include="Areas\Admin\Models\Compra\_Compra_Datos.cs" />
+    <Compile Include="Models\CompraModels.cs" />
+    <Compile Include="Models\_Compra_Datos.cs" />
     <Compile Include="Filters\AutorizadoAttribute.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AlmacenEntradaModels.cs" />
+    <Compile Include="Models\CatEstadoModels.cs" />
+    <Compile Include="Models\CatMunicipioModels.cs" />
+    <Compile Include="Models\CatPaisModels.cs" />
     <Compile Include="Models\CFDI_FormaPagoModels.cs" />
     <Compile Include="Models\CFDI_ImpuestoModels.cs" />
     <Compile Include="Models\CFDI_MetodoPagoModels.cs" />
@@ -3413,6 +3418,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Content\assets2\img\uploads\" />
     <Folder Include="Content\assets2\plugins\email\img\uploads4\" />
     <Folder Include="Content\assets2\plugins\jquery-file-upload\server\php\files\thumbnail\" />
