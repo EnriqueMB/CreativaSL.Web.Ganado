@@ -2772,6 +2772,8 @@
     <Content Include="Areas\Admin\Views\CatLugar\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Test\Index.cshtml" />
     <Content Include="Areas\Admin\Views\CatChofer\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\CatFierro\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CatFierro\Create.cshtml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -2962,6 +2964,7 @@
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\CatChoferController.cs" />
     <Compile Include="Areas\Admin\Controllers\CatClienteController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CatFierroController.cs" />
     <Compile Include="Areas\Admin\Controllers\CatLugarController.cs" />
     <Compile Include="Areas\Admin\Controllers\CatUsuariosController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
@@ -3053,6 +3056,7 @@
     <Compile Include="Models\VentaModels.cs" />
     <Compile Include="Models\_CatChofer_Datos.cs" />
     <Compile Include="Models\_CatCliente_Datos.cs" />
+    <Compile Include="Models\_CatFierro_Datos.cs" />
     <Compile Include="Models\_CatLugar_Datos.cs" />
     <Compile Include="Models\_Login_Datos.cs" />
     <Compile Include="Models\_Menu_Datos.cs" />
