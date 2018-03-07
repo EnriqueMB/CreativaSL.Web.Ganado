@@ -1,33 +1,59 @@
-﻿using CreativaSL.Web.Ganado.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CreativaSL.Web.Ganado.Models;
 
 namespace CreativaSL.Web.Ganado.Areas.Admin.Controllers
 {
-    public class TestController : Controller
+    public class CompraController : Controller
     {
-        // GET: Admin/Test
+        string Conexion = ConfigurationManager.AppSettings.Get("strConnection");
+        // GET: Admin/Compra
         public ActionResult Index()
         {
-            return View(new CompraAlmacenModels());
+            try
+            {
+                CompraModels Compra = new CompraModels();
+                _Compra_Datos CompraDatos = new _Compra_Datos();
+                Compra.Conexion = Conexion;
+                Compra = CompraDatos.ObtenerCompraIndex(Compra);
+                return View(Compra);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
-        // GET: Admin/Test/Details/5
+        // GET: Admin/Compra/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Admin/Test/Create
+        // GET: Admin/Compra/Create
         public ActionResult Create()
         {
-            return View();
+            try
+            {
+                CompraModels Compra = new CompraModels();
+                _Compra_Datos CompraDatos = new _Compra_Datos();
+                Compra.Conexion = Conexion;
+                Compra.TablaProveedoresCmb = CompraDatos.ObtenerListadoProveedores(Compra);
+                var ListProveedores = new SelectList(Compra.TablaProveedoresCmb, "id_proveedor", "NombreProveedor");
+                ViewData["cmbProveedores"] = ListProveedores;
+                return View();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
-        // POST: Admin/Test/Create
+        // POST: Admin/Compra/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -43,13 +69,13 @@ namespace CreativaSL.Web.Ganado.Areas.Admin.Controllers
             }
         }
 
-        // GET: Admin/Test/Edit/5
+        // GET: Admin/Compra/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Admin/Test/Edit/5
+        // POST: Admin/Compra/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -65,13 +91,13 @@ namespace CreativaSL.Web.Ganado.Areas.Admin.Controllers
             }
         }
 
-        // GET: Admin/Test/Delete/5
+        // GET: Admin/Compra/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Admin/Test/Delete/5
+        // POST: Admin/Compra/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

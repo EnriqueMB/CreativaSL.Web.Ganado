@@ -60,6 +60,40 @@
                                     <span class="help-block">Seleccione el régime fiscal </span>
                                 </div>
                             </div>
+                            <div class="row-fluid" style="display:none" id="VER">
+                                <div class="span3">
+                                    <div class="control-group">
+                                        <label class="control-label">Fisica</label>
+                                        <div class="controls" id="IDF">
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="span3">
+                                    <div class="control-group">
+                                        <label class="control-label">Moral</label>
+                                        <div class="controls" id="IDM">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="span3">
+                                    <div class="control-group">
+                                        <label class="control-label">Fecha Inicio Vigencia</label>
+                                        <div class="controls" id="IDFI">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="span3">
+                                    <div class="control-group">
+                                        <label class="control-label">Fecha Fin Vigencia</label>
+                                        <div class="controls" id="IDFF">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row-fluid">
                                 <div class="span6">
                                     <div class="control-group">
@@ -102,10 +136,59 @@
             </div>
         </div>
     </div>
+    <script>
+       
+        $(document).ready(function () {
+            $("#ListRegimen").change(function () {
+                if ($(this).val() == "") {
+                    $("#VER").css("display", "none");
+                }
+                else {
+                    getDatosRegimen($("#ListRegimen").val());
+                }
+            });
+        });
+        function getDatosRegimen(id) {
+            $.ajax({
+                url: "/Admin/CatCliente/ObtenerDatosRegimen",
+                data: { id: id },
+                dataType: "json",
+                type: "POST",
+                error: function () {
+                    $("#ListRegimen").html('');
+                },
+                success: function (gradoEscolar) {
+                    var items = "";
+                    var items1 = "";
+                    var items2 = "";
+                    var items3 = "";
+                    for (var i = 0; i < gradoEscolar.length; i++) {
+                        if (gradoEscolar[i].Fisica == true) {
+                            items += "<input type='text' value='SI' disabled='true'/>";
+                        }
+                        else {
+                            items += "<input type='text' value='NO' disabled='true'/>";
+                        }
+                        if (gradoEscolar[i].Moral == true) {
+                            items1 += "<input type='text' value='SI' disabled='true'/>";
+                        }
+                        else {
+                            items1 += "<input type='text' value='NO' disabled='true'/>";
+                        }
+                        items2 += "<input type='text' disabled='true' value=" + gradoEscolar[i].FechaInicio + ">";
+                        items3 += "<input type='text' disabled='true' value=" + gradoEscolar[i].FechaFin + ">";
+                    }
+                    $("#IDF").html(items);
+                    $("#IDM").html(items1);
+                    $("#IDFI").html(items2);
+                    $("#IDFF").html(items3);
+                    $("#VER").css("display", "block");
+                }
+            });
+        }
+    </script>
 
     <script>
-
-
         jQuery(document).ready(function () {
             var message = '@message';
             var typemessage = '@typemessage';

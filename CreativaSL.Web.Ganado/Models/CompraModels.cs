@@ -1,163 +1,146 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.ComponentModel.DataAnnotations;
+using System.Data;
 
 namespace CreativaSL.Web.Ganado.Models
 {
     public class CompraModels
     {
+        #region Variables
+        private DataTable _tablaCompra;
+        private DateTime _FechaHoraCompra;
+        private DateTime _FechaHoraProgramada;
+        private string _IDProveedor;
+        private string _IDSucursal;
         private string _IDCompra;
+        private string _IDFlete;
+        private string _IDDocumentoXPagar;
+        private string _IDRecepcion;
+        private string _GuiaTransito;
+        private string _CertZoosanitario;
+        private string _CertTuberculosis;
+        private string _CertBrucelosis;
+        private int _GanadoPactadoMachos;
+        private int _GanadoPactadoHembras;
+        private int _GanadoPactadoTotal;
+        private decimal _MontoTotal;
+        private decimal _KilosTotal;
+        private decimal _MermaPromedio;
+        private bool _Estatus;
+        private List<CatProveedorModels> _TablaProveedoresCmb;
+        #endregion
 
+        #region Metodos
         public string IDCompra
         {
             get { return _IDCompra; }
             set { _IDCompra = value; }
         }
-
-        private string _IDProveedor;
-
         public string IDProveedor
         {
             get { return _IDProveedor; }
             set { _IDProveedor = value; }
         }
-
-        private string _IDSucursal;
-
         public string IDSucursal
         {
             get { return _IDSucursal; }
             set { _IDSucursal = value; }
         }
-
-        private string _IDFlete;
-
         public string IDFlete
         {
             get { return _IDFlete; }
             set { _IDFlete = value; }
         }
-
-        private string _IDDocumentoXPagar;
-
         public string IDDocuentoXPagar
         {
             get { return _IDDocumentoXPagar; }
             set { _IDDocumentoXPagar = value; }
         }
-
-        private string _IDRecepcion;
-
         public string IDRecepcion
         {
             get { return _IDRecepcion; }
             set { _IDRecepcion = value; }
         }
-
-        private string _GuiaTransito;
-
         public string GuiaTransito
         {
             get { return _GuiaTransito; }
             set { _GuiaTransito = value; }
         }
-
-        private string _CertZoosanitario;
-
         public string CertZoosanitario
         {
             get { return _CertZoosanitario; }
             set { _CertZoosanitario = value; }
         }
-
-        private string _CertTuberculosis;
-
         public string CertTuberculosis
         {
             get { return _CertTuberculosis; }
             set { _CertTuberculosis = value; }
         }
-
-        private string _CertBrucelosis;
-
         public string CertBrucelosis
         {
             get { return _CertBrucelosis; }
             set { _CertBrucelosis = value; }
         }
-
-        private DateTime _FechaHoraCompra;
-
         public DateTime FechaHoraCompra
         {
             get { return _FechaHoraCompra; }
             set { _FechaHoraCompra = value; }
         }
-
-        private DateTime _FechaHoraProgramada;
-
         public DateTime FechaHoraProgramada
         {
             get { return _FechaHoraProgramada; }
             set { _FechaHoraProgramada = value; }
         }
-
-        private int _GanadoPactadoMachos;
-
         public int GanadoPactadoMachos
         {
             get { return _GanadoPactadoMachos; }
             set { _GanadoPactadoMachos = value; }
         }
-
-        private int _GanadoPactadoHembras;
-
         public int GanadoPactadoHembras
         {
             get { return _GanadoPactadoHembras; }
             set { _GanadoPactadoHembras = value; }
         }
-
-        private int _GanadoPactadoTotal;
-
         public int GanadoPactadoTotal
         {
             get { return _GanadoPactadoTotal; }
             set { _GanadoPactadoTotal = value; }
         }
-
-        private decimal _MontoTotal;
-
         public decimal MontoTotal
         {
             get { return _MontoTotal; }
             set { _MontoTotal = value; }
         }
-
-        private decimal _KilosTotal;
-
         public decimal KilosTotal
         {
             get { return _KilosTotal; }
             set { _KilosTotal = value; }
         }
-
-        private decimal _MermaPromedio;
-
         public decimal MermaPromedio
         {
             get { return _MermaPromedio; }
             set { _MermaPromedio = value; }
         }
-
-        private bool _Estatus;
-
         public bool Estatus
         {
             get { return _Estatus; }
             set { _Estatus = value; }
         }
+        public DataTable TablaCompra
+        {
+            get { return _tablaCompra; }
+            set { _tablaCompra = value; }
+        }
+
+        [Required(ErrorMessage = "Tipo de Usuario es un campo requerido")]
+        [Display(Name = "Tipo de Usuario")]
+        public List<CatProveedorModels> TablaProveedoresCmb
+        {
+            get { return _TablaProveedoresCmb; }
+            set { _TablaProveedoresCmb = value; }
+        }
+        #endregion 
 
         #region Datos De Control
         public string Conexion { get; set; }

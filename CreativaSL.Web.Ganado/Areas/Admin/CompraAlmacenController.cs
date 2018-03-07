@@ -1,33 +1,32 @@
-﻿using CreativaSL.Web.Ganado.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace CreativaSL.Web.Ganado.Areas.Admin.Controllers
+namespace CreativaSL.Web.Ganado.Areas.Admin
 {
-    public class TestController : Controller
+    public class CompraAlmacenController : Controller
     {
-        // GET: Admin/Test
+        // GET: Admin/CompraAlmacen
         public ActionResult Index()
         {
-            return View(new CompraAlmacenModels());
+            return View();
         }
 
-        // GET: Admin/Test/Details/5
+        // GET: Admin/CompraAlmacen/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Admin/Test/Create
+        // GET: Admin/CompraAlmacen/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Admin/Test/Create
+        // POST: Admin/CompraAlmacen/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -43,13 +42,13 @@ namespace CreativaSL.Web.Ganado.Areas.Admin.Controllers
             }
         }
 
-        // GET: Admin/Test/Edit/5
+        // GET: Admin/CompraAlmacen/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Admin/Test/Edit/5
+        // POST: Admin/CompraAlmacen/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -65,13 +64,13 @@ namespace CreativaSL.Web.Ganado.Areas.Admin.Controllers
             }
         }
 
-        // GET: Admin/Test/Delete/5
+        // GET: Admin/CompraAlmacen/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Admin/Test/Delete/5
+        // POST: Admin/CompraAlmacen/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
