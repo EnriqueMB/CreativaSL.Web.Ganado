@@ -1,9 +1,8 @@
-﻿@model CreativaSL.Web.Ganado.Models.CatJaulaModels
+﻿@model CreativaSL.Web.Ganado.Models.CatProductosModels
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Create";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-
 
 @section featured
 {
@@ -30,41 +29,44 @@
                     <div class="portlet-title">
                         <div class="caption"><i class="icon-reorder"></i>Nueva Jaula</div>
                     </div>
-                    @using (Html.BeginForm("Edit", "CatJaula", FormMethod.Post, new { @class = "form-horizontal", autocomplete = "off" }))
+                    @using (Html.BeginForm("Create", "CatProductos", FormMethod.Post, new { @class = "form-horizontal", autocomplete = "off" }))
                     {
                         @Html.AntiForgeryToken()
                         @Html.ValidationSummary(true)
 
-                        @Html.HiddenFor(model => model.IDJaula)
+                        @Html.HiddenFor(model => model.IDProducto)
 
                         <div class="portlet-body form">
-                            <h3 class="form-section">Información de Jaula</h3>
+                            <h3 class="form-section">Información del producto</h3>
                             <div class="row-fluid">
                                 <div class="span4">
                                     <div class="control-group">
-                                        <label class="control-label">Matricula<span class="required"> *</span></label>
+                                        <label class="control-label">Clave<span class="required"> *</span></label>
                                         <div class="controls">
-                                            @Html.TextBoxFor(model => model.Matricula, new { id = "Nombre", @class = "span12 m-wrap" })
-                                            @Html.ValidationMessageFor(model => model.Matricula)
-                                            <span class="help-bolck">Matricula de la jaula</span>
+                                            @Html.TextBoxFor(model => model.Clave, new { id = "clave", @class = "span12 m-wrap" })
+                                            @Html.ValidationMessageFor(model => model.Clave)
+                                            <span class="help-bolck">Clave del producto</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="span4">
                                     <div class="control-group">
-                                        <label class="control-label">Sucursal<span class="required"> *</span></label>
+                                        <label class="control-label">Descripción<span class="required"> *</span></label>
                                         <div class="controls">
-                                            @Html.DropDownListFor(model => model.listaSucursales, ViewData["cmbSucursal"] as SelectList, new { id = "ListSucursal", @class = "span12 m-wrap " })
-                                            @Html.ValidationMessageFor(model => model.listaSucursales)
-                                            <span class="help-bolck">Ingrese la descripción del lugar</span>
+                                            @Html.TextBoxFor(model => model.Descripcion, new { id = "descripcion", @class = "span12 m-wrap" })
+                                            @Html.ValidationMessageFor(model => model.Descripcion)
+                                            <span class="help-bolck">Ingrese la descripción del producto</span>
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="span4">
                                     <div class="control-group">
-                                        <label class="control-label">Activo</label>
+                                        <label class="control-label">Clave CFDI<span class="required"> *</span></label>
                                         <div class="controls">
-                                            @Html.CheckBoxFor(model => model.Estatus)
+                                            @Html.TextBoxFor(model => model.Clave_cfdi, new { id = "clave_cfdi", @class = "span12 m-wrap" })
+                                            @Html.ValidationMessageFor(model => model.Clave_cfdi)
+                                            <span class="help-bolck">Ingrese la clave CFDI del producto</span>
                                         </div>
                                     </div>
                                 </div>
@@ -76,7 +78,7 @@
 
                             <div class="form-actions">
                                 <input type="submit" value="Guardar" class="btn green">
-                                <a href="@Url.Action("Index","CatJaula")" class="btn btn-default red"><i class="icon-prev"></i>Cancelar</a>
+                                <a href="@Url.Action("Index","CatProductos")" class="btn btn-default red"><i class="icon-prev"></i>Cancelar</a>
                             </div>
                         </div>
                     }
@@ -88,13 +90,10 @@
 
 
      jQuery(document).ready(function () {
-         //LISTA DE ESTADOS CUANDO COMBO PAISES CAMBIA
-         $('#ListSucursal').val('@Model.IDSucursal');
 
-            $('#Licencia').change(function () {
-                $('#licencia-cont').toggle(1000);
 
-            });
+
+
             var message = '@message';
             var typemessage = '@typemessage';
 
@@ -133,11 +132,6 @@
     </script>
 
 }
-
-
-
-
-
 
 
 
