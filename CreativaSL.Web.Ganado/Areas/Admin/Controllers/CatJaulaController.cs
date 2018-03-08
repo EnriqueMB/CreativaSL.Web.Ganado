@@ -48,11 +48,12 @@ namespace CreativaSL.Web.Ganado.Areas.Admin.Controllers
             try {
                 CatJaulaModels Jaula = new CatJaulaModels();
                 _CatJaula_Datos JaulaDatos = new _CatJaula_Datos();
-
+                Jaula.conexion = Conexion; 
                 Jaula.listaSucursales = JaulaDatos.obtenerListaSucursales(Jaula);
                 var listaSucursal = new SelectList(Jaula.listaSucursales, "IDSucursal", "NombreSucursal");
                 ViewData["cmbSucursal"] = listaSucursal;
-                return View();
+                Jaula.Estatus = Convert.ToBoolean("true");
+                return View(Jaula);
             }
             catch (Exception ex)
             {
@@ -66,35 +67,98 @@ namespace CreativaSL.Web.Ganado.Areas.Admin.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
+                CatJaulaModels Jaula = new CatJaulaModels();
+                _CatJaula_Datos JaulaDatos = new _CatJaula_Datos();
+                Jaula.conexion = Conexion;
+                Jaula.opcion = 1;
+                Jaula.Estatus= collection["Estatus"].StartsWith("true");
+                Jaula.IDSucursal = collection["listaSucursales"];
+                Jaula.Matricula = collection["Matricula"];
+                Jaula.user = User.Identity.Name;
+                Jaula = JaulaDatos.AbcCatJaula(Jaula);
 
+                if (Jaula.Completado == true)
+                {
+                    TempData["typemessage"] = "1";
+                    TempData["message"] = "El registro se guardo correctamente.";
+
+                }
+                else
+                {
+                    TempData["typemessage"] = "2";
+                    TempData["message"] = "Ocurrió un error al guardar el registro.";
+                }
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                CatJaulaModels Jaula = new CatJaulaModels();
+
+                TempData["typemessage"] = "2";
+                TempData["message"] = "No se pudo guardar los datos. Por favor contacte a soporte técnico";
+                return View(Jaula);
             }
         }
 
         // GET: Admin/CatJaula/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
-            return View();
+            try
+            {
+                CatJaulaModels Jaula = new CatJaulaModels();
+                _CatJaula_Datos JaulaDatos = new _CatJaula_Datos();
+                Jaula.conexion = Conexion;
+                Jaula.IDJaula = id;
+                Jaula.listaSucursales = JaulaDatos.obtenerListaSucursales(Jaula);
+                var listaSucursal = new SelectList(Jaula.listaSucursales, "IDSucursal", "NombreSucursal");
+                ViewData["cmbSucursal"] = listaSucursal;
+
+                Jaula = JaulaDatos.ObtenerDetalleCatJaula(Jaula);
+                return View(Jaula);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         // POST: Admin/CatJaula/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(string id, FormCollection collection)
         {
             try
             {
-                // TODO: Add update logic here
+                CatJaulaModels Jaula = new CatJaulaModels();
+                _CatJaula_Datos JaulaDatos = new _CatJaula_Datos();
+                Jaula.conexion = Conexion;
+                Jaula.IDJaula = id;
+                Jaula.opcion = 2;
+                Jaula.Estatus = collection["Estatus"].StartsWith("true");
+                Jaula.IDSucursal = collection["listaSucursales"];
+                Jaula.Matricula = collection["Matricula"];
+                Jaula.user = User.Identity.Name;
+                Jaula = JaulaDatos.AbcCatJaula(Jaula);
 
+                if (Jaula.Completado == true)
+                {
+                    TempData["typemessage"] = "1";
+                    TempData["message"] = "El registro se guardo correctamente.";
+
+                }
+                else
+                {
+                    TempData["typemessage"] = "2";
+                    TempData["message"] = "Ocurrió un error al guardar el registro.";
+                }
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                CatJaulaModels Jaula = new CatJaulaModels();
+
+                TempData["typemessage"] = "2";
+                TempData["message"] = "No se pudo guardar los datos. Por favor contacte a soporte técnico";
+                return View(Jaula);
             }
         }
 
@@ -106,13 +170,20 @@ namespace CreativaSL.Web.Ganado.Areas.Admin.Controllers
 
         // POST: Admin/CatJaula/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(string id, FormCollection collection)
         {
             try
             {
+                CatJaulaModels Jaula = new CatJaulaModels();
+                _CatJaula_Datos JaulaDatos = new _CatJaula_Datos();
+                Jaula.conexion = Conexion;
+                Jaula.IDJaula = id;
+                Jaula.user = User.Identity.Name;
                 // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                Jaula = JaulaDatos.EliminarJaula(Jaula);
+                TempData["typemessage"] = "1";
+                TempData["message"] = "El registro se ha eliminado correctamente";
+                return Json("");
             }
             catch
             {

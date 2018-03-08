@@ -2785,7 +2785,6 @@
     <Content Include="Areas\Admin\Views\Compra\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Almacen\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Almacen\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\CatFierro\Edit.cshtml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />

@@ -31,7 +31,7 @@ namespace CreativaSL.Web.Ganado.Models
         private List<CatPaisModels> _listaPaises;
         [Required(ErrorMessage = "El País es obligatorio")]
         [Display(Name = "Pais")]
-        [StringLength(80, ErrorMessage = "El número de caracteres de {0} debe ser al menos {2} y un maximo de {1}.", MinimumLength = 1)]
+        
         
         public List<CatPaisModels> listaPaises
         {
@@ -40,8 +40,8 @@ namespace CreativaSL.Web.Ganado.Models
         }
         private List<CatEstadoModels> _listaEstado;
         [Required(ErrorMessage = "El Estado es obligatorio")]
-        [Display(Name = "Pais")]
-        [StringLength(80, ErrorMessage = "El número de caracteres de {0} debe ser al menos {2} y un maximo de {1}.", MinimumLength = 1)]
+        [Display(Name = "Estado")]
+        
         public List<CatEstadoModels> listaEstado
         {
             get { return _listaEstado; }
@@ -49,8 +49,9 @@ namespace CreativaSL.Web.Ganado.Models
         }
         private List<CatMunicipioModels> _listaMunicipio;
         [Required(ErrorMessage = "El Municipio es obligatorio")]
-        [Display(Name = "Pais")]
-        [StringLength(80, ErrorMessage = "El número de caracteres de {0} debe ser al menos {2} y un maximo de {1}.", MinimumLength = 1)]
+        [Display(Name = "Municipio")]
+
+        [RegularExpression(@"^[1-9][0-9]*$", ErrorMessage = "Seleccione un municipio")]
         public List<CatMunicipioModels> listaMunicipio
         {
             get { return _listaMunicipio; }
