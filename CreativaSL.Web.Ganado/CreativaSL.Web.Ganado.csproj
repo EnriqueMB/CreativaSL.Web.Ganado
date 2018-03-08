@@ -2785,6 +2785,9 @@
     <Content Include="Areas\Admin\Views\Compra\Index.cshtml" />
     <Content Include="Areas\Admin\Views\CatLugar\Create.cshtml" />
     <Content Include="Areas\Admin\Views\CatLugar\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\CatJaula\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\CatJaula\Edit.cshtml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
