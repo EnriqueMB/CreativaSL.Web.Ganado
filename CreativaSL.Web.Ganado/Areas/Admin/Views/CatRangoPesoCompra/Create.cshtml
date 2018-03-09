@@ -1,4 +1,4 @@
-﻿@model CreativaSL.Web.Ganado.Models.CatPuestoModels
+﻿@model CreativaSL.Web.Ganado.Models.CatRangoPesoCompraModels
 
 @{
     ViewBag.Title = "Create";
@@ -27,40 +27,50 @@
             <div class="tab-pane">
                 <div class="portlet box blue">
                     <div class="portlet-title">
-                        <div class="caption"><i class="icon-reorder"></i>Nuevo Puesto</div>
+                        <div class="caption"><i class="icon-reorder"></i>Nuevo Rango Peso Compra</div>
                     </div>
-                    @using (Html.BeginForm("Create", "CatPuestos", FormMethod.Post, new { @class = "form-horizontal", autocomplete = "off" }))
+                    @using (Html.BeginForm("Create", "CatRangoPesoCompra", FormMethod.Post, new { @class = "form-horizontal", autocomplete = "off" }))
                     {
                         @Html.AntiForgeryToken()
                         @Html.ValidationSummary(true)
 
-                        @Html.HiddenFor(model => model.IDPuesto)
+                        @Html.HiddenFor(model => model.IDRango)
 
                         <div class="portlet-body form">
-                            <h3 class="form-section">Información de Puesto</h3>
+                            <h3 class="form-section">Información del rango de peso</h3>
                             <div class="row-fluid">
-                                <div class="span6">
+                                <div class="span4">
                                     <div class="control-group">
-                                        <label class="control-label">Nombre del Puesto<span class="required"> *</span></label>
+                                        <label class="control-label">Peso Minimo<span class="required"> *</span></label>
                                         <div class="controls">
-                                            @Html.TextBoxFor(model => model.Descripcion, new { id = "Descripcion", @class = "span12 m-wrap" })
-                                            @Html.ValidationMessageFor(model => model.Descripcion)
-                                            <span class="help-bolck">Ingrese el nombre del puesto</span>
+                                            @Html.TextBoxFor(model => model.PesoMinimo, new { id = "PesoMinimo", @class = "span12 m-wrap" })
+                                            @Html.ValidationMessageFor(model => model.PesoMinimo)
+                                            <span class="help-bolck">Ingrese el peso minimo</span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="span6">
+                                <div class="span4">
                                     <div class="control-group">
-                                        <label class="control-label">¿Es Gerente?</label>
+                                        <label class="control-label">Peso Maximo<span class="required"> *</span></label>
                                         <div class="controls">
-                                            @Html.CheckBoxFor(model => model.EsGerente)
+                                            @Html.TextBoxFor(model => model.PesoMaximo, new { id = "PesoMaximo", @class = "span12 m-wrap" })
+                                            @Html.ValidationMessageFor(model => model.PesoMaximo)
+                                            <span class="help-bolck">Ingrese el peso Maximo</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="span4">
+                                    <div class="control-group">
+                                        <label class="control-label">¿Es Macho?</label>
+                                        <div class="controls">
+                                            @Html.CheckBoxFor(model => model.EsMacho)
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-actions">
                                 <input type="submit" value="Guardar" class="btn green">
-                                <a href="@Url.Action("Index","CatPuestos")" class="btn btn-default red"><i class="icon-prev"></i>Cancelar</a>
+                                <a href="@Url.Action("Index","CatRangoPesoCompra")" class="btn btn-default red"><i class="icon-prev"></i>Cancelar</a>
                             </div>
                         </div>
                     }
@@ -107,4 +117,5 @@
         jQuery.validator.methods["date"] = function (value, element) { return true; }
     </script>
 
-}
+    }
+
