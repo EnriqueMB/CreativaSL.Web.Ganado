@@ -2796,6 +2796,9 @@
     <Content Include="Areas\Admin\Views\CatJaula\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\CatLugar\Create.cshtml" />
     <Content Include="Areas\Admin\Views\CatLugar\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\CatPuestos\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\CatPuestos\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\CatPuestos\Index.cshtml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -2998,10 +3001,12 @@
     <Compile Include="Areas\Admin\Controllers\CompraController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\TestController.cs" />
+    <Compile Include="Models\CatPuestoModels.cs" />
     <Compile Include="Models\CompraModels.cs" />
     <Compile Include="Models\_CatJaula_Datos.cs" />
     <Compile Include="Models\_CatMarcaVehiculo_Datos.cs" />
     <Compile Include="Models\_CatProductos_Datos.cs" />
+    <Compile Include="Models\_CatPuestos_Datos.cs" />
     <Compile Include="Models\_Compra_Datos.cs" />
     <Compile Include="Filters\AutorizadoAttribute.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -3444,7 +3449,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Views\CatPuestos\" />
     <Folder Include="Areas\Admin\Views\CompraAlmacen\" />
     <Folder Include="Content\assets2\img\uploads\" />
     <Folder Include="Content\assets2\plugins\email\img\uploads4\" />
