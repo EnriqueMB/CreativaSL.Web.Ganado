@@ -2788,6 +2788,13 @@
     <Content Include="Areas\Admin\Views\CatProductos\Create.cshtml" />
     <Content Include="Areas\Admin\Views\CatProductos\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\CatProductos\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CatJaula\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\CatJaula\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\CatLugar\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\CatLugar\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\CatProveedor\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CatProveedor\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\CatProveedor\Edit.cshtml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -2984,6 +2991,7 @@
     <Compile Include="Areas\Admin\Controllers\CatJaulaController.cs" />
     <Compile Include="Areas\Admin\Controllers\CatLugarController.cs" />
     <Compile Include="Areas\Admin\Controllers\CatProductosController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CatProveedorController.cs" />
     <Compile Include="Areas\Admin\Controllers\CatUsuariosController.cs" />
     <Compile Include="Areas\Admin\Controllers\CompraController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
@@ -2991,6 +2999,7 @@
     <Compile Include="Models\CompraModels.cs" />
     <Compile Include="Models\_CatJaula_Datos.cs" />
     <Compile Include="Models\_CatProductos_Datos.cs" />
+    <Compile Include="Models\_CatProveedor_Datos.cs" />
     <Compile Include="Models\_Compra_Datos.cs" />
     <Compile Include="Filters\AutorizadoAttribute.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
