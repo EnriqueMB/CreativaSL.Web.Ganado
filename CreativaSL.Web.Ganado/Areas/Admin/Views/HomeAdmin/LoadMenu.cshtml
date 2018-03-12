@@ -3,27 +3,34 @@
 @{
     Layout = null;
 }
-@foreach (var item in Model.ListaMenu)
+
+@helper DibujarMenu(CreativaSL.Web.Ganado.Models.MenuModels Item)
 {
-    if (item.ListaMenuDetalle.Count == 0)
+    if (Item.ListaMenu.Count == 0)
     {
-        <li class="">
-            <a href="@Url.Action("Index", item.UrlMenu)"><i class="@item.IconMenu"></i> <span class="title">@item.NombreMenu</span></a>
-        </li>
+            <li class="">
+                <a href="@Url.Action("Index", Item.UrlMenu)"><i class="@Item.IconMenu"></i> <span class="title">@Item.NombreMenu</span></a>
+            </li>
     }
     else
     {
-        <li class="">
-            <a><i class="@item.IconMenu"></i><span class="title">@item.NombreMenu</span><span class="arrow "></span></a>
-            <ul class="sub-menu">
-                @foreach (var SubMenu in item.ListaMenuDetalle)
-                {
-                    <li class="">
-                        <a href="@Url.Action("Index", Html.Raw(Html.Encode(SubMenu.UrlMenu)).ToString())"><i class="@SubMenu.IconMenu"></i> <span class="title">@SubMenu.NombreMenu</span></a>
-                    </li>
-                }
-            </ul>
-        </li>
+            <li class="">
+                <a><i class="@Item.IconMenu"></i><span class="title">@Item.NombreMenu</span><span class="arrow "></span></a>
+                <ul class="sub-menu">
+                    @foreach (var SubMenu in Item.ListaMenu)
+                    {
+                        @DibujarMenu(SubMenu);
+                        @*<li class="">
+                                <a href="@Url.Action("Index", Html.Raw(Html.Encode(SubMenu.UrlMenu)).ToString())"><i class="@SubMenu.IconMenu"></i> <span class="title">@SubMenu.NombreMenu</span></a>
+                            </li>*@
+                    }
+                </ul>
+            </li>
     }
+}
+
+@foreach (var item in Model.ListaMenu)
+{
+    @DibujarMenu(item);
 }
 

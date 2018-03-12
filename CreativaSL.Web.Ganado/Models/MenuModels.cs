@@ -124,5 +124,13 @@ namespace CreativaSL.Web.Ganado.Models
             set { _TipoMenu = value; }
         }
 
+        private int _ParentMenuID;
+
+        public int ParentMenuID
+        {
+            get { return _ParentMenuID; }
+            set { _ParentMenuID = value; }
+        }
+
     }
 }
