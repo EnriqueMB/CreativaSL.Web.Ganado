@@ -2792,6 +2792,15 @@
     <Content Include="Areas\Admin\Views\CatProductos\Create.cshtml" />
     <Content Include="Areas\Admin\Views\CatProductos\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\CatProductos\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CatProveedor\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\CatProveedor\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\CatProveedor\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CatPuestos\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\CatPuestos\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\CatPuestos\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CatRangoPesoCompra\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\CatRangoPesoCompra\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\CatRangoPesoCompra\Index.cshtml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -2989,6 +2998,9 @@
     <Compile Include="Areas\Admin\Controllers\CatLugarController.cs" />
     <Compile Include="Areas\Admin\Controllers\CatMarcaVehiculoController.cs" />
     <Compile Include="Areas\Admin\Controllers\CatProductosController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CatProveedorController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CatPuestosController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CatRangoPesoCompraController.cs" />
     <Compile Include="Areas\Admin\Controllers\CatUsuariosController.cs" />
     <Compile Include="Areas\Admin\Controllers\CompraController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
