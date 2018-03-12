@@ -43,7 +43,7 @@ namespace CreativaSL.Web.Ganado.Areas.Admin.Controllers
                 _Compra_Datos CompraDatos = new _Compra_Datos();
                 Compra.Conexion = Conexion;
                 Compra.TablaProveedoresCmb = CompraDatos.ObtenerListadoProveedores(Compra);
-                var ListProveedores = new SelectList(Compra.TablaProveedoresCmb, "id_proveedor", "NombreProveedor");
+                var ListProveedores = new SelectList(Compra.TablaProveedoresCmb, "IDProveedor", "NombreRazonSocial");
                 ViewData["cmbProveedores"] = ListProveedores;
                 return View();
             }

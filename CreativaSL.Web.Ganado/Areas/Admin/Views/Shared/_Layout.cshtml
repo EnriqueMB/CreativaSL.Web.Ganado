@@ -64,12 +64,12 @@
                             }
                         }
                         @*<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <span class="username">Grupo Ocampo</span>
-                            <i class="icon-angle-down"></i>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="@Url.Action("LogOff", "Account", new { Area = "Admin"})"><i class="icon-key"></i> Cerrar Sesión</a></li>
-                        </ul>*@
+                                <span class="username">Grupo Ocampo</span>
+                                <i class="icon-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="@Url.Action("LogOff", "Account", new { Area = "Admin"})"><i class="icon-key"></i> Cerrar Sesión</a></li>
+                            </ul>*@
                     </li>
                 </ul>
             </div>
@@ -124,8 +124,8 @@
     <script src="@Url.Content("~/Content/assets2/plugins/jQuery-Mask-Plugin-master/jquery.mask.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Content/assets2/plugins/fullcalendar/fullcalendar/fullcalendar.min.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Content/assets2/plugins/jtables/datatable.min.js")" type="text/javascript"></script>
-   
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5BKT7iWoiumqmmh2ex_ixcg9QMLte5VY" type="text/javascript"></script>
+
+    @*<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5BKT7iWoiumqmmh2ex_ixcg9QMLte5VY8&callback=initMap" type="text/javascript" async defer></script>*@
     @*<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD68M1_tCCrdyDfisLvtUeTiVRS7oPMtY0" type="text/javascript"></script>*@
     <script src="@Url.Content("~/Content/assets2/scripts/mapa-lugares/config.map.places.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Content/assets2/scripts/form-samples.js")"></script>
@@ -134,6 +134,10 @@
     <script src="@Url.Content("~/Content/assets2/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Content/assets2/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Content/assets2/scripts/form-components.js")"></script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2rqGcEDSsWZyBXeE5oUMSXXpmgL5cfY8&callback=initMap"
+            async defer></script>
+
     @RenderSection("scripts", required: false)
     <script>
         function zoom() {

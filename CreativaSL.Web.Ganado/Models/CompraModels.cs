@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
+using System.Web;
 
 namespace CreativaSL.Web.Ganado.Models
 {
@@ -28,10 +29,15 @@ namespace CreativaSL.Web.Ganado.Models
         private decimal _KilosTotal;
         private decimal _MermaPromedio;
         private bool _Estatus;
+        private HttpPostedFileBase[] _ImgFierros;
         private List<CatProveedorModels> _TablaProveedoresCmb;
         #endregion
 
         #region Metodos
+        [Required(ErrorMessage = "Seleccione una imagen de un fierro, por lo menos.")]
+        [Display(Name = "Imganes Fierros")]
+        public HttpPostedFileBase[] ImgFierros { get; set; }
+
         public string IDCompra
         {
             get { return _IDCompra; }
@@ -87,6 +93,10 @@ namespace CreativaSL.Web.Ganado.Models
             get { return _FechaHoraCompra; }
             set { _FechaHoraCompra = value; }
         }
+
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime FechaHoraProgramada
         {
             get { return _FechaHoraProgramada; }

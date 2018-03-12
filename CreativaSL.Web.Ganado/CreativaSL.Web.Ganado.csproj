@@ -2759,6 +2759,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\upp.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_LayoutLogin.cshtml" />
@@ -3431,6 +3432,7 @@
     <Folder Include="Content\assets2\img\uploads\" />
     <Folder Include="Content\assets2\plugins\email\img\uploads4\" />
     <Folder Include="Content\assets2\plugins\jquery-file-upload\server\php\files\thumbnail\" />
+    <Folder Include="Content\assets2\plugins\uploadFiles\" />
     <Folder Include="Controllers\" />
   </ItemGroup>
   <PropertyGroup>
