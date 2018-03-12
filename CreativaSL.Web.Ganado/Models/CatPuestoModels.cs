@@ -6,28 +6,26 @@ using System.Web;
 
 namespace CreativaSL.Web.Ganado.Models
 {
-    public class CatMarcaVehiculoModels
+    public class CatPuestoModels
     {
-        public CatMarcaVehiculoModels()
+        public CatPuestoModels()
         {
             _Descripcion = string.Empty;
-            Conexion = string.Empty;
-            Usuario = string.Empty;
-            _ListaMarcas = new List<CatMarcaVehiculoModels>();
+            _ListaPuesto = new List<CatPuestoModels>();
         }
 
-        private int _IDMarca;
+        private int _IDPuesto;
 
-        public int IDMarca
+        public int IDPuesto
         {
-            get { return _IDMarca; }
-            set { _IDMarca = value; }
+            get { return _IDPuesto; }
+            set { _IDPuesto = value; }
         }
 
         private string _Descripcion;
-        [Required(ErrorMessage = "La marca es obligatorio")]
-        [Display(Name = "marca")]
-        [StringLength(80, ErrorMessage = "El número de caracteres de {0} debe ser al menos {2} y un maximo de {1}.", MinimumLength = 1)]
+        [Required(ErrorMessage = "El nombre es obligatorio")]
+        [Display(Name = "nombre")]
+        [StringLength(300, ErrorMessage = "El número de caracteres de {0} debe ser al menos {2} y un maximo de {1}.", MinimumLength = 1)]
         [RegularExpression(@"^[A-Za-záéíóúñÁÉÍÓÚÑ0-9\(\)\-\,\.\;\:\s]*$", ErrorMessage = "Solo Letras y números")]
         public string Descripcion
         {
@@ -35,12 +33,20 @@ namespace CreativaSL.Web.Ganado.Models
             set { _Descripcion = value; }
         }
 
-        private List<CatMarcaVehiculoModels> _ListaMarcas;
+        private bool _EsGerente;
 
-        public List<CatMarcaVehiculoModels> ListaMarcas
+        public bool EsGerente
         {
-            get { return _ListaMarcas; }
-            set { _ListaMarcas = value; }
+            get { return _EsGerente; }
+            set { _EsGerente = value; }
+        }
+
+        private List<CatPuestoModels> _ListaPuesto;
+
+        public List<CatPuestoModels> ListaPuesto
+        {
+            get { return _ListaPuesto; }
+            set { _ListaPuesto = value; }
         }
 
 
