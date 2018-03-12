@@ -104,6 +104,29 @@ namespace CreativaSL.Web.Ganado.Models
                 throw ex;
             }
         }
+        public CatFierroModels ObtenerDetalleCatFierro(CatFierroModels datos)
+        {
+            try
+            {
+                object[] parametros = { datos.IDFierro };
+                SqlDataReader dr = null;
+                dr = SqlHelper.ExecuteReader(datos.Conexion, "spCSLDB_Catalogo_get_CatFierroXID", parametros);
+                while (dr.Read())
+                {
+                    datos.IDFierro = !dr.IsDBNull(dr.GetOrdinal("IDFierro")) ? dr.GetString(dr.GetOrdinal("IDFierro")) : string.Empty;
+                    datos.NombreFierro = !dr.IsDBNull(dr.GetOrdinal("NombreFierro")) ? dr.GetString(dr.GetOrdinal("NombreFierro")) : string.Empty;
+                    datos.Observaciones = !dr.IsDBNull(dr.GetOrdinal("Observaciones")) ? dr.GetString(dr.GetOrdinal("Observaciones")) : string.Empty;
+                    datos.ImgFierro = !dr.IsDBNull(dr.GetOrdinal("ImgFierro")) ? dr.GetString(dr.GetOrdinal("ImgFierro")) : string.Empty;
+                    Bitmap bmpFromString = datos.ImgFierro.Base64StringToBitmap();
+                    datos.ImagenContruida = bmpFromString.ToBase64ImageTag(ImageFormat.Png);
+                }
+                return datos;
+            }
 
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

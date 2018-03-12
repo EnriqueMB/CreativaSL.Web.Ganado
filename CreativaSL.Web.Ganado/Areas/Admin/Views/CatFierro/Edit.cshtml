@@ -1,0 +1,136 @@
+﻿@model CreativaSL.Web.Ganado.Models.CatFierroModels
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section featured
+{
+<link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/assets2/plugins/cropper/cropper.min.css")" />
+    @{
+        var message = TempData["message"] ?? string.Empty;
+        var typemessage = TempData["typemessage"] ?? string.Empty;
+    }
+    <div class="page-content">
+        <div id="Error" class="error message" style="display: none">
+            <h3></h3>
+        </div>
+        <div id="Success" class="success message" style="display: none">
+            <h3></h3>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span12">
+                    <h3 class="page-title">Grupo Ocampo<small>   Administración</small></h3>
+                </div>
+            </div>
+            <div class="tab-pane">
+                <div class="portlet box blue">
+                    <div class="portlet-title">
+                        <div class="caption"><i class="icon-reorder"></i>Editar fierro</div>
+                    </div>
+                    @using (Html.BeginForm("Edit", "CatFierro", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", autocomplete = "off" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+
+                        @Html.HiddenFor(model => model.IDFierro)
+
+                        <div class="portlet-body form">
+                            <h3 class="form-section">Información del Fierro</h3>
+                            <div class="row-fluid">
+                                <div class="span6">
+                                    <div class="control-group">
+                                        <label class="control-label">Nombre Fierro<span class="required"> *</span></label>
+                                        <div class="controls">
+                                            @Html.TextBoxFor(model => model.NombreFierro, new { id = "NombreFierro", @class = "span12 m-wrap" })
+                                            @Html.ValidationMessageFor(model => model.NombreFierro)
+                                            <span class="help-bolck">Ingrese el nombre del fierro</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="span6">
+                                    <div class="control-group">
+                                        <label class="control-label">Observaciones<span class="required"> *</span></label>
+                                        <div class="controls">
+                                            @Html.TextBoxFor(model => model.Observaciones, new { id = "Observaciones", @class = "span12 m-wrap" })
+                                            @Html.ValidationMessageFor(model => model.Observaciones)
+                                            <span class="help-bolck">Ingrese la obsercación</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3 class="form-section">Imagen</h3>
+                            <div class="row-fluid">
+                                <div class="span12">
+                                    <div class="control-group">
+                                        <div class="controls">
+                                            <div class="fileupload fileupload-new" data-provides="fileupload">
+                                                <div class="img-container" style="max-height:300px; min-height:300px;">
+                                                   @Html.Raw(HttpUtility.HtmlDecode(Model.ImagenContruida))
+                                                </div>
+                                                <br />
+                                                <div class="btn-group">
+                                                    <label class="btn btn-primary btn-upload" for="inputImage" title="Upload image file">
+                                                        <span class="btn btn-file">
+                                                            <span class="fileupload-new">Seleccionar Imagen</span>
+                                                            @Html.TextBoxFor(model => model.foto2, new { type = "file", id = "inputImage", accept = ".png, .jpg, .jpeg" })
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <input type="submit" value="Guardar" class="btn green">
+                                <a href="@Url.Action("Index","CatFierro")" class="btn btn-default red"><i class="icon-prev"></i>Cancelar</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $.validator.addMethod('filesize', function (value, element, param) {
+            return this.optional(element) || (element.files[0].size <= param)
+        });
+        $(function () {
+            $('input[name^="foto2"]').rules('add', {
+                accept: "png,jpg,jpeg",
+                filesize: 10485760,
+                messages: {
+                    accept: "Solo archivos png, jpg, jpeg",
+                    filesize: "Solo archivos de tamaño menor a 10 MB"
+                }
+            });
+        });
+        jQuery(document).ready(function () {
+            var message = '@message';
+            var typemessage = '@typemessage';
+
+            if (typemessage && message) {
+                if (typemessage == '1') {
+                    $('#Success').html('<h3>' + message + '<h3>');
+                    $('#Success').css("display", "block");
+                    $('#Success').delay(400).slideDown(400).delay(2000).slideUp(400);
+                    $('#Success').css("display", "block");
+                }
+                else if (typemessage == '2') {
+                    $('#Error').html('<h3>' + message + '<h3>');
+                    $('#Error').css("display", "block");
+                    $('#Error').delay(400).slideDown(400).delay(2000).slideUp(400);
+                    $('#Error').css("display", "block");
+                }
+            }
+        });
+    </script>
+    <script type="text/javascript">
+        jQuery.validator.methods["date"] = function (value, element) { return true; }
+    </script>
+<script src="@Url.Content("~/Content/assets2/plugins/cropper/cropper.min.js")"></script>
+<script src="@Url.Content("~/Content/assets2/scripts/image-cropper.js")"></script>
+}

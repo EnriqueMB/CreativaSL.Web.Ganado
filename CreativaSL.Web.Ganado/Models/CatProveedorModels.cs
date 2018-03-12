@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -7,6 +8,78 @@ namespace CreativaSL.Web.Ganado.Models
 {
     public class CatProveedorModels
     {
+        public CatProveedorModels() {
+            _IDProveedor = string.Empty;
+            _IDTipoProveedor = 0;
+            _IDSucursal = string.Empty;
+            _NombreRazonSocial = string.Empty;
+            _RFC = string.Empty;
+            _ImgINE = string.Empty;
+            _ImgManifestacionFierro = string.Empty;
+            //Datos control
+            Conexion = string.Empty;
+            Resultado = 0;
+            Opcion = 0;
+            Completado = false;
+            Usuario = string.Empty;
+
+        }
+        /// <summary>
+        /// LISTA DE TIPO DE PROVEEDOR
+        /// </summary>
+        /// 
+        private List<CatTipoProveedorModels> _listaTipoProveedor;
+        [Required(ErrorMessage = "El tipo de proveedor es obligatorio")]
+        [Display(Name = "Municipio")]
+
+        [RegularExpression(@"^[1-9][0-9]*$", ErrorMessage = "Seleccione un municipio")]
+        public List<CatTipoProveedorModels> listaTipoProveedor
+        {
+            get { return _listaTipoProveedor; }
+            set { _listaTipoProveedor = value; }
+        }
+        /// <summary>
+        /// LISTA SUCURSAL
+        /// </summary>
+        /// 
+        private List<CatSucursalesModels> _listaSucursal;
+        [Required(ErrorMessage = "La sucursal es obligatoria")]
+        [Display(Name = "Sucursal")]
+        public List<CatSucursalesModels> listaSucursal
+        {
+            get { return _listaSucursal; }
+            set { _listaSucursal = value; }
+        }
+        /// <summary>
+        /// NOMBRE DEL TIPO DE PROVEEDOR
+        /// </summary>
+        private string _nombreProveedor;
+
+        public string nombreProveedor
+        {
+            get { return _nombreProveedor; }
+            set { _nombreProveedor = value; }
+        }
+
+        private string _nombreSucursal;
+
+        public string nombreSucursal
+        {
+            get { return _nombreSucursal; }
+            set { _nombreSucursal = value; }
+        }
+        /// <summary>
+        /// lista proveedor
+        /// </summary>
+        /// 
+        private List<CatProveedorModels> _listaProveedores;
+
+        public List<CatProveedorModels> listaProveedores
+        {
+            get { return _listaProveedores; }
+            set { _listaProveedores = value; }
+        }
+
         private string _IDProveedor;
 
         public string IDProveedor
@@ -32,7 +105,10 @@ namespace CreativaSL.Web.Ganado.Models
         }
 
         private string _NombreRazonSocial;
-
+        [Required(ErrorMessage = "El nombre es obligatorio")]
+        [Display(Name = "nombre")]
+        [StringLength(300, ErrorMessage = "El número de caracteres de {0} debe ser al menos {2} y un maximo de {1}.", MinimumLength = 1)]
+        [RegularExpression(@"^[A-Za-záéíóúñÁÉÍÓÚÑ0-9\s\.\,\-]*$", ErrorMessage = "Solo Letras, Números")]
         public string NombreRazonSocial
         {
             get { return _NombreRazonSocial; }
@@ -40,7 +116,10 @@ namespace CreativaSL.Web.Ganado.Models
         }
 
         private string _RFC;
-
+        [Required(ErrorMessage = "El nombre es obligatorio")]
+        [Display(Name = "nombre")]
+        [StringLength(20, ErrorMessage = "El número de caracteres de {0} debe ser al menos {2} y un maximo de {1}.", MinimumLength = 1)]
+        [RegularExpression(@"^[A-Za-záéíóúñÁÉÍÓÚÑ0-9\s]*$", ErrorMessage = "Solo Letras, Números")]
         public string RFC
         {
             get { return _RFC; }
@@ -48,7 +127,9 @@ namespace CreativaSL.Web.Ganado.Models
         }
 
         private string _ImgINE;
-
+        [Required(ErrorMessage = "La Imagen es obligatorio")]
+        [Display(Name = "Imagen")]
+        [FileExtensions(Extensions = "png,jpg,jpeg", ErrorMessage = "Solo imagenes")]
         public string ImgINE
         {
             get { return _ImgINE; }
@@ -56,7 +137,9 @@ namespace CreativaSL.Web.Ganado.Models
         }
 
         private string _ImgManifestacionFierro;
-
+        [Required(ErrorMessage = "La Imagen es obligatorio")]
+        [Display(Name = "Imagen")]
+        [FileExtensions(Extensions = "png,jpg,jpeg", ErrorMessage = "Solo imagenes")]
         public string ImgManifestacionFierro
         {
             get { return _ImgManifestacionFierro; }

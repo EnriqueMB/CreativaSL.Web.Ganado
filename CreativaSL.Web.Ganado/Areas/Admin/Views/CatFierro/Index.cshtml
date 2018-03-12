@@ -50,6 +50,7 @@
                                                             <thead class="flip-content">
                                                                 <tr>
                                                                     <th>Imagen</th>
+                                                                    <th>Imagen2</th>
                                                                     <th>Fierro</th>
                                                                     <th>Editar</th>
                                                                     <th>Eliminar</th>
@@ -61,6 +62,7 @@
                                                                     
                                                                     <tr>
                                                                         <td><img src="data:image/png;base64,@Fierro.ImgFierro" width="52px" height="52px"/></td>
+                                                                        <td>@Html.Raw(HttpUtility.HtmlDecode(Fierro.ImagenContruida))</td>
                                                                         <td>@Fierro.NombreFierro</td>
                                                                         <td style="text-align:center;"><a class="btn yellow" href="@Url.Action("Edit", "CatFierro", new { id = Fierro.IDFierro })"><i class="icon-edit"></i></a></td>
                                                                         <td style="text-align: center;"><a class="btn red delete" href="@Url.Action("Delete", "CatFierro", new { id = Fierro.IDFierro })"><i class="icon-trash"></i></a></td>
