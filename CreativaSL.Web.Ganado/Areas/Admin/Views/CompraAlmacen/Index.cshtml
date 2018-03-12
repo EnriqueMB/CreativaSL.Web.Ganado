@@ -1,4 +1,4 @@
-﻿@model CreativaSL.Web.Ganado.Models.CatAlmacenModels
+﻿@model CreativaSL.Web.Ganado.Models.CompraAlmacenModels
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -28,13 +28,13 @@
                     <div class="span12">
                         <div class="portlet box blue">
                             <div class="portlet-title">
-                                <div class="caption"><i class="icon-edit"></i>Almacén</div>
+                                <div class="caption"><i class="icon-edit"></i>Compra de almacén</div>
                             </div>
                             <div class="portlet-body">
                                 <div class="clearfix">
                                     <div class="btn-group">
                                         <div class="span12">
-                                            <a href="@Url.Action("Create","Almacen")" class="btn btn-default green"><i class="icon-plus"></i> Agregar almacén</a>
+                                            <a href="@Url.Action("Create","CompraAlmacen")" class="btn btn-default green"><i class="icon-plus"></i> Capturar compra</a>
                                         </div>
                                     </div>
                                 </div>
@@ -48,22 +48,45 @@
                                                         <table id="example" class="table table-striped table-hover table-bordered dataTable">
                                                             <thead class="flip-content">
                                                                 <tr>
-                                                                    <th>Clave de almacén</th>
-                                                                    <th>Descripción</th>
-                                                                    <th>Sucursal</th>
+                                                                    <th>Num. Factura / Nota</th>
+                                                                    <th>Proveedor</th>
+                                                                    <th>Estatus</th>
+                                                                    <th>Total</th>
                                                                     <th>Editar</th>
                                                                     <th>Eliminar</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                @foreach (CreativaSL.Web.Ganado.Models.CatAlmacenModels ItemAlmacen in Model.ListaAlmacen)
+                                                                @foreach (CreativaSL.Web.Ganado.Models.CompraAlmacenModels ItemCompra in Model.ListaCompras)
                                                                 {
                                                                     <tr>
-                                                                        <td>@ItemAlmacen.ClaveAlmacen</td>
-                                                                        <td>@ItemAlmacen.Descripcion</td>
-                                                                        <td>@ItemAlmacen.Sucursal.NombreSucursal</td>
-                                                                        <td style="text-align:center;"><a class="btn yellow" href="@Url.Action("Edit", "Almacen", new { id = ItemAlmacen.IDAlmacen })"><i class="icon-edit"></i></a></td>
-                                                                        <td style="text-align:center;"><a class="btn red delete" href="@Url.Action("Delete", "Almacen", new { id = ItemAlmacen.IDAlmacen })"><i class="icon-trash"></i></a></td>
+                                                                        <td>@ItemCompra.NumFacturaNota</td>
+                                                                        <td>@ItemCompra.Proveedor.NombreRazonSocial</td>
+
+                                                                        @{
+                                                                            switch (ItemCompra.IDEstatusCompra)
+                                                                            {
+                                                                                case 1:
+                                                                                    // Use the text block below to separate html elements from code
+                                                                                    <text>
+                                                                                        <td style="text-align:center"><div style="padding:9px;margin: auto;width:1px;height:1px; border-radius:50% !important; background:red"></div></td>
+                                                                                    </text>
+                                                                                    break;  // Always break each case
+                                                                                case 2:
+                                                                                    <text>
+                                                                                        <td style="text-align:center"><div style="padding:9px;margin: auto;width:1px;height:1px; border-radius:50% !important; background:green"></div></td>
+                                                                                    </text>
+                                                                                    break;
+                                                                                default:
+                                                                                    <text>
+                                                                                        <td style="text-align:center"><div style="padding:9px;margin: auto;width:1px;height:1px; border-radius:50% !important; background:yellow"></div></td>
+                                                                                    </text>
+                                                                                        break;
+                                                                                }
+                                                                            }
+                                                                        <td>@ItemCompra.MontoTotalFormato</td>
+                                                                        <td style="text-align:center;"><a class="btn yellow" href="@Url.Action("Edit", "CompraAlmacen", new { id = ItemCompra.IDCompraAlmacen })"><i class="icon-edit"></i></a></td>
+                                                                        <td style="text-align:center;"><a class="btn red delete" href="@Url.Action("Delete", "CompraAlmacen", new { id = ItemCompra.IDCompraAlmacen })"><i class="icon-trash"></i></a></td>
                                                                     </tr>
                                                                 }
                                                             </tbody>
@@ -90,7 +113,7 @@
 	        "aLengthMenu" : [
 	        [10,25, 50, 100, 200, -1], [10, 25, 50, 100, 200, "All"]
 	        ],
-	        "iDisplayLength" : 10
+	        "iDisplayLength": 10	       
             });
 
             $('a.delete').live('click', function (e) {
@@ -113,7 +136,7 @@
 
         });
 
-       jQuery(document).ready(function () {
+        jQuery(document).ready(function () {
            var message = '@message';
             var typemessage = '@typemessage';
 
@@ -132,16 +155,5 @@
                 }
             }
         });
-
-
-
     </script>
 }
-
-
-
-
-
-
-
-

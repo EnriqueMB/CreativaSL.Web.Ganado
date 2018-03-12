@@ -21,7 +21,7 @@ namespace CreativaSL.Web.Ganado.Areas.Admin.Controllers
         }
 
         // GET: Admin/HomeAdmin
-        [HttpGet]
+        //[HttpGet]
         public ActionResult LoadMenu()
         {
             try
@@ -31,7 +31,7 @@ namespace CreativaSL.Web.Ganado.Areas.Admin.Controllers
                 Menu.Conexion = Conexion;
                 Menu.User = User.Identity.Name;
                 Menu.TipoMenu = 1;
-                Menu = MenuD.ObtenerMenu2(Menu);
+                Menu = MenuD.ObtenerAllPermisoUsuario(Menu);
                 return View(Menu);
             }
             catch (Exception)
@@ -40,5 +40,7 @@ namespace CreativaSL.Web.Ganado.Areas.Admin.Controllers
                 return View(Menu);
             }
         }
+
+        
     }
 }

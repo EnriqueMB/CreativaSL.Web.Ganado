@@ -1,11 +1,12 @@
 ﻿@model CreativaSL.Web.Ganado.Models.CatAlmacenModels
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Edit";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
 @section featured
 {
+
     @{
         var message = TempData["message"] ?? string.Empty;
         var typemessage = TempData["typemessage"] ?? string.Empty;
@@ -20,15 +21,15 @@
         <div class="container-fluid">
             <div class="row-fluid">
                 <div class="span12">
-                    <h3 class="page-title">Grupo Ocampo<small>  Administración</small></h3>
+                    <h3 class="page-title">Grupo Ocampo<small> Administración</small></h3>
                 </div>
             </div>
             <div class="tab-pane">
                 <div class="portlet box blue">
                     <div class="portlet-title">
-                        <div class="caption"><i class="icon-reorder"></i>Agregar almacén</div>
+                        <div class="caption"><i class="icon-reorder"></i>Editar Almacén</div>
                     </div>
-                    @using (Html.BeginForm("Create", "Almacen", FormMethod.Post, new { @class = "form-horizontal", autocomplete = "off" }))
+                    @using (Html.BeginForm("Edit", "Almacen", FormMethod.Post, new { @class = "form-horizontal", autocomplete = "off" }))
                     {
                         @Html.AntiForgeryToken()
                         @Html.ValidationSummary(true)
@@ -46,24 +47,21 @@
                                             @Html.ValidationMessageFor(model => model.ListaSucursales)
                                         </div>
                                     </div>
-                                    <span class="help-block">Seleccione la Sucursal</span>
                                 </div>
                                 <div class="span6">
                                     <div class="control-group">
                                         <label class="control-label">Nombre del almacén<span class="required"> *</span></label>
                                         <div class="controls">
                                             @Html.TextBoxFor(model => model.Descripcion, new { id = "descripcion", @class = "span12 m-wrap" })
-                                            @Html.ValidationMessageFor(model => model.Descripcion)                                            
+                                            @Html.ValidationMessageFor(model => model.Descripcion)
                                         </div>
                                     </div>
                                     <span class="help-block">Ingrese el nombre del almacén</span>
                                 </div>
-                                
-                            </div>
-                                                       
+                            </div>                            
                             <div class="form-actions">
                                 <input type="submit" value="Guardar" class="btn green">
-                                <a href="@Url.Action("Index","CompraAlmacen")" class="btn btn-default red"><i class="icon-prev"></i>Cancelar</a>
+                                <a href="@Url.Action("Index","Almacen")" class="btn btn-default red"><i class="icon-prev"></i>Cancelar</a>
                             </div>
                         </div>
                     }
@@ -71,13 +69,14 @@
             </div>
         </div>
     </div>
-    
 
     <script>
+
         jQuery(document).ready(function () {
+            $("#ListaSucursal").val('@Model.Sucursal.IDSucursal');
+
             var message = '@message';
             var typemessage = '@typemessage';
-
             if (typemessage && message) {
                 if (typemessage == '1') {
                     $('#Success').html('<h3>' + message + '<h3>');
@@ -94,24 +93,22 @@
             }
         });
     </script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            try
-            {
-                $("input[type='text']").each(function ()
-                {
-                    $(this).attr("autocomplete", "off");
-                    $(this).val = "";
-                });
-            }
-            catch (e)
-            {
-            }
-        });
-        jQuery.validator.methods["date"] = function (value, element) { return true; }
-    </script>
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

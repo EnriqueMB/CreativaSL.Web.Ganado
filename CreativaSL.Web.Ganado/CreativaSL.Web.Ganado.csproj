@@ -2785,6 +2785,10 @@
     <Content Include="Areas\Admin\Views\Compra\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Almacen\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Almacen\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Almacen\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\CompraAlmacen\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CompraAlmacen\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\CompraAlmacen\Detail.cshtml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -2972,7 +2976,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Admin\CompraAlmacenController.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\AlmacenController.cs" />
     <Compile Include="Areas\Admin\Controllers\CatChoferController.cs" />
@@ -2981,6 +2984,7 @@
     <Compile Include="Areas\Admin\Controllers\CatJaulaController.cs" />
     <Compile Include="Areas\Admin\Controllers\CatLugarController.cs" />
     <Compile Include="Areas\Admin\Controllers\CatUsuariosController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CompraAlmacenController.cs" />
     <Compile Include="Areas\Admin\Controllers\CompraController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\TestController.cs" />
@@ -3428,7 +3432,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Views\CompraAlmacen\" />
     <Folder Include="Content\assets2\img\uploads\" />
     <Folder Include="Content\assets2\plugins\email\img\uploads4\" />
     <Folder Include="Content\assets2\plugins\jquery-file-upload\server\php\files\thumbnail\" />
