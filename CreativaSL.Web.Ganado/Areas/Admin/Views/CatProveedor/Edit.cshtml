@@ -1,0 +1,222 @@
+﻿@model CreativaSL.Web.Ganado.Models.CatProveedorModels
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section featured
+{
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/assets2/plugins/cropper/cropper.min.css")" />
+    @{
+        var message = TempData["message"] ?? string.Empty;
+        var typemessage = TempData["typemessage"] ?? string.Empty;
+    }
+    <div class="page-content">
+        <div id="Error" class="error message" style="display: none">
+            <h3></h3>
+        </div>
+        <div id="Success" class="success message" style="display: none">
+            <h3></h3>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span12">
+                    <h3 class="page-title">Grupo Ocampo<small>   Administración</small></h3>
+                </div>
+            </div>
+            <div class="tab-pane">
+                <div class="portlet box blue">
+                    <div class="portlet-title">
+                        <div class="caption"><i class="icon-reorder"></i>Nuevo Proveedor</div>
+                    </div>
+                    @using (Html.BeginForm("Edit", "CatProveedor", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", autocomplete = "off" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+
+                        @Html.HiddenFor(model => model.IDProveedor)
+
+                        <div class="portlet-body form">
+                            <h3 class="form-section">Información del Proveedor</h3>
+                            <div class="row-fluid">
+                                <div class="span6">
+                                    <div class="control-group">
+                                        <label class="control-label">Nombre Razon Social<span class="required"> *</span></label>
+                                        <div class="controls">
+                                            @Html.TextBoxFor(model => model.NombreRazonSocial, new { id = "nombreRazonSocial", @class = "span12 m-wrap" })
+                                            @Html.ValidationMessageFor(model => model.NombreRazonSocial)
+                                            <span class="help-bolck">Ingrese el nombre del fierro</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="span6">
+                                    <div class="control-group">
+                                        <label class="control-label">RFC<span class="required"> *</span></label>
+                                        <div class="controls">
+                                            @Html.TextBoxFor(model => model.RFC, new { id = "RFC", @class = "span12 m-wrap" })
+                                            @Html.ValidationMessageFor(model => model.RFC)
+                                            <span class="help-bolck">Ingrese la obsercación</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row-fluid">
+                                <div class="span6">
+                                    <div class="control-group">
+                                        <label class="control-label">Tipo de proveedor<span class="required"> *</span></label>
+                                        <div class="controls">
+                                            @Html.DropDownListFor(model => model.listaTipoProveedor, ViewData["cmbTipoProveedor"] as SelectList, new { id = "ListTipoProveedor", @class = "span12 m-wrap " })
+                                            @Html.ValidationMessageFor(model => model.listaTipoProveedor)
+                                        </div>
+                                    </div>
+                                    <span class="help-block">Seleccione el tipo de proveedor </span>
+                                </div>
+                                <div class="span6">
+                                    <div class="control-group">
+                                        <label class="control-label">Sucursal<span class="required"> *</span></label>
+                                        <div class="controls">
+                                            @Html.DropDownListFor(model => model.listaSucursal, ViewData["cmbSucursal"] as SelectList, new { id = "ListSucursal", @class = "span12 m-wrap " })
+                                            @Html.ValidationMessageFor(model => model.listaSucursal)
+                                        </div>
+                                    </div>
+                                    <span class="help-block">Seleccione sucusal </span>
+                                </div>
+
+                            </div>
+                            <h3 class="form-section">Imagenes INE</h3>
+
+                            <div class="row-fluid">
+                                <div class="span12">
+                                    <div class="control-group">
+                                        <div class="controls">
+                                            <div class="fileupload fileupload-new" data-provides="fileupload">
+                                                <div class="img-container" style="max-height:300px; min-height:300px;">
+                                                    @{ string fotoINE = "data:image/png;base64, " + Model.ImgINE;
+                                                    <img src="@fotoINE" alt="Picture" id="imgLugar" />}
+                                                </div>
+                                                <br />
+                                                <div class="btn-group">
+                                                    <label class="btn btn-primary btn-upload" for="inputImage" title="Upload image file">
+                                                        <span class="btn btn-file">
+                                                            <span class="fileupload-new">Seleccionar Imagen de INE</span>
+                                                            @Html.TextBoxFor(model => model.ImgINE, new { type = "file", id = "inputImage", accept = ".png, .jpg, .jpeg" })
+                                                            @Html.ValidationMessageFor(model => model.ImgINE)
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <h3 class="form-section">Imagenes Manifestacion Fierro</h3>
+                            <div class="row-fluid">
+                                <div class="span12">
+                                    <div class="control-group">
+                                        <div class="controls">
+                                            <div class="fileupload fileupload-new" data-provides="fileupload2">
+                                                <div class="img-container2" style="max-height:300px; min-height:300px;">
+                                                    @{ string fotoManifestacion = "data:image/png;base64, " + Model.ImgManifestacionFierro;
+                                                        <img src="@fotoManifestacion" alt="Picture" id="imgLugar2" />}
+                                                </div>
+                                                <br />
+                                                <div class="btn-group">
+                                                    <label class="btn btn-primary btn-upload" for="inputImage2" title="Upload image file">
+                                                        <span class="btn btn-file">
+                                                            <span class="fileupload-new">Seleccionar Imagen de Manifestacion Fierro</span>
+                                                            @Html.TextBoxFor(model => model.ImgManifestacionFierro, new { type = "file", id = "inputImage2", accept = ".png, .jpg, .jpeg" })
+                                                            @Html.ValidationMessageFor(model => model.ImgManifestacionFierro)
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <input type="submit" value="Guardar" class="btn green">
+                                <a href="@Url.Action("Index","CatProveedor")" class="btn btn-default red"><i class="icon-prev"></i>Cancelar</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $.validator.addMethod('files', function (value, element, param) {
+            return this.optional(element) || (element.files[0].size <= param)
+        });
+        $('#ListSucursal').val('@Model.IDSucursal');
+        $('#ListTipoProveedor').val('@Model.IDTipoProveedor');
+        $(function () {
+            $('input[name^="ImgINE"]').rules('add', {
+                accept: "png,jpg,jpeg",
+                filesize: 10485760,
+                messages: {
+                    accept: "Solo archivos png, jpg, jpeg",
+                    filesize: "Solo archivos de tamaño menor a 10 MB"
+                }
+            });
+            $('input[name^="ImgManifestacionFierro"]').rules('add', {
+                accept: "png,jpg,jpeg",
+                filesize: 10485760,
+                messages: {
+                    accept: "Solo archivos png, jpg, jpeg",
+                    filesize: "Solo archivos de tamaño menor a 10 MB"
+                }
+            });
+        });
+
+        jQuery(document).ready(function () {
+            var message = '@message';
+            var typemessage = '@typemessage';
+
+            if (typemessage && message) {
+                if (typemessage == '1') {
+                    $('#Success').html('<h3>' + message + '<h3>');
+                    $('#Success').css("display", "block");
+                    $('#Success').delay(400).slideDown(400).delay(2000).slideUp(400);
+                    $('#Success').css("display", "block");
+                }
+                else if (typemessage == '2') {
+                    $('#Error').html('<h3>' + message + '<h3>');
+                    $('#Error').css("display", "block");
+                    $('#Error').delay(400).slideDown(400).delay(2000).slideUp(400);
+                    $('#Error').css("display", "block");
+                }
+            }
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            try
+            {
+                $("input[type='text']").each(function ()
+                {
+                    $(this).attr("autocomplete", "off");
+                    $(this).val = "";
+                });
+            }
+            catch (e)
+            {
+            }
+        });
+        jQuery.validator.methods["date"] = function (value, element) { return true; }
+    </script>
+    <script src="@Url.Content("~/Content/assets2/plugins/cropper/cropper.min.js")"></script>
+    <script src="@Url.Content("~/Content/assets2/scripts/image-cropper.js")"></script>
+}
+
+
+
+
+
+
+
+
+
+
