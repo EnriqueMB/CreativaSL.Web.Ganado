@@ -76,8 +76,9 @@
                 <div class="portlet-title">
                     <div class="caption"><i class="icon-reorder"></i>Nueva compra</div>
                 </div>
+                <input type="hidden" id="id_compra" value="1" />
 
-                @using (Html.BeginForm("Create", "Compra", FormMethod.Post, new { @class = "form-horizontal" }))
+                @using (Html.BeginForm("Create", "Compra", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
                 {
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary(true)
@@ -92,14 +93,14 @@
                                 <div class="navbar-inner">
                                     <div class="container">
                                         <ul>
-                                            <li><a href="#tab1" data-toggle="tab">Datos del proveedor</a></li>
-                                            <li><a href="#tab2" data-toggle="tab">Fierros</a></li>
-                                            <li><a href="#tab3" data-toggle="tab">Flete</a></li>
-                                            <li><a href="#tab4" data-toggle="tab">Certificados</a></li>
-                                            <li><a href="#tab5" data-toggle="tab">Ganado</a></li>
-                                            <li><a href="#tab6" data-toggle="tab">Otros movimientos</a></li>
-                                            <li><a href="#tab7" data-toggle="tab">Pagos</a></li>
-                                            <li><a href="#tab8" data-toggle="tab">Resumen</a></li>
+                                            <li><a href="#tab1" data-toggle="tab" >Datos del proveedor</a></li>
+                                            <li><a href="#tab2" data-toggle="tab" >Fierros</a></li>
+                                            <li><a href="#tab3" data-toggle="tab" >Flete</a></li>
+                                            <li><a href="#tab4" data-toggle="tab" >Certificados</a></li>
+                                            <li><a href="#tab5" data-toggle="tab" >Ganado</a></li>
+                                            <li><a href="#tab6" data-toggle="tab" >Otros movimientos</a></li>
+                                            <li><a href="#tab7" data-toggle="tab" >Pagos</a></li>
+                                            <li><a href="#tab8" data-toggle="tab" >Resumen</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -120,7 +121,7 @@
                                             <div class="control-group">
                                                 <label class="control-label">Proveedor<span class="required"> *</span></label>
                                                 <div class="controls">
-                                                    @Html.DropDownListFor(model => model.TablaProveedoresCmb, ViewData["cmbProveedores"] as SelectList, new { id = "ListaProveedor", @class = "span12 m-wrap chosen" })
+                                                    @Html.DropDownListFor(model => model.TablaProveedoresCmb, ViewData["cmbProveedores"] as SelectList, new { id = "ListaProveedor", @class = "span12 m-wrap chosen", data_notice = "Lista de proveedores.", value="0" })
                                                     @Html.ValidationMessageFor(model => model.TablaProveedoresCmb)
                                                     <span class="help-block">Ingrese el nombre del proveedor</span>
                                                 </div>
@@ -133,9 +134,7 @@
                                             <div class="control-group">
                                                 <label class="control-label">Manifestacion del fierro</label>
                                                 <div class="controls">
-                                                    @Html.TextBoxFor(model => model.IDFlete, new { id = "id_flete", @class = "span12 m-wrap" })
-                                                    @Html.ValidationMessageFor(model => model.IDFlete)
-                                                    <span class="help-block">Ingrese una ubicación de destino</span>
+                                                    <input id="ImgManifestacionFierro" name="ImgManifestacionFierro" type="file" data-notice="Imagen de la manifestación de fierro." >
                                                 </div>
                                             </div>
                                         </div>
@@ -143,8 +142,8 @@
                                             <div class="control-group">
                                                 <label class="control-label">Número de U.P.P.</label>
                                                 <div class="controls">
-                                                    @Html.TextBoxFor(model => model.IDProveedor, new { id = "UPP", @class = "span12 m-wrap" })
-                                                    <span class="help-block">Ingrese número de U.P.P.</span>
+                                                    @Html.TextBox("UPP","" ,new { @class = "span12 m-wrap" , disabled = "disabled", data_notice = "Número de U.P.P."})
+
                                                 </div>
                                             </div>
                                         </div>
@@ -155,9 +154,8 @@
                                             <div class="control-group">
                                                 <label class="control-label">Cantidad pactada machos<span class="required"> *</span></label>
                                                 <div class="controls">
-                                                    @Html.TextBoxFor(model => model.GanadoPactadoMachos, new { id = "GanadoPactadoMachos", @class = "span12 m-wrap" })
+                                                    @Html.TextBoxFor(model => model.GanadoPactadoMachos, new { id = "GanadoPactadoMachos", @class = "span12 m-wrap", @Value = "0", data_notice = "Cantidad pactada MACHOS."})
                                                     @Html.ValidationMessageFor(model => model.GanadoPactadoMachos)
-                                                    <span class="help-block">Ingrese cantidad pactada</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -165,19 +163,17 @@
                                             <div class="control-group">
                                                 <label class="control-label">Cantidad pactada hembras<span class="required"> *</span></label>
                                                 <div class="controls">
-                                                    @Html.TextBoxFor(model => model.GanadoPactadoHembras, new { id = "GanadoPactadoHembras", @class = "span12 m-wrap" })
+                                                    @Html.TextBoxFor(model => model.GanadoPactadoHembras, new { id = "GanadoPactadoHembras", @class = "span12 m-wrap", @Value = "0", data_notice = "Cantidad pactada HEMBRAS."})
                                                     @Html.ValidationMessageFor(model => model.GanadoPactadoHembras)
-                                                    <span class="help-block">Ingrese cantidad pactada</span>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="span4">
                                             <div class="control-group">
-                                                <label class="control-label">Fecha programada</label>
+                                                <label class="control-label">Fecha programada<span class="required"> *</span></label>
                                                 <div class="controls">
-                                                    @Html.TextBoxFor(model => model.FechaHoraProgramada, new { id = "FechaHoraProgramada", @class = "span12 m-wrap", @type = "date" })
+                                                    @Html.TextBoxFor(model => model.FechaHoraProgramada, new { id = "FechaHoraProgramada", @class = "span12 m-wrap", @type = "date", data_notice = "Fecha programada."})
                                                     @Html.ValidationMessageFor(model => model.FechaHoraProgramada)
-                                                    <span class="help-block">Ingrese una fecha</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -191,7 +187,7 @@
                                             <div class="control-group">
                                                 <label class="control-label">Fierros</label>
                                                 <div class="controls">
-                                                    @Html.TextBoxFor(model => model.ImgFierros, new { id = "ImgFierros", name = "ImgFierros[]", @type = "file", @class = "span12 m-wrap", @multiple = "multiple" })
+                                                    @Html.TextBoxFor(model => model.ImgFierros, new { id = "ImgFierros", name = "ImgFierros[]", @type = "file", @class = "span12 m-wrap", @multiple = "multiple", data_notice = "Imágenes de fierros."})
                                                     @Html.ValidationMessageFor(model => model.ImgFierros)
                                                     <span class="help-block">Ingrese por lo menos una imagen de fierro</span>
                                                 </div>
@@ -207,9 +203,8 @@
                                             <div class="control-group">
                                                 <label class="control-label">Guía de tránsito<span class="required"> *</span></label>
                                                 <div class="controls">
-                                                    @Html.TextBoxFor(model => model.IDProveedor, new { id = "ManifestacionFierro", @class = "span12 m-wrap" })
-                                                    @Html.ValidationMessageFor(model => model.IDProveedor)
-                                                    <span class="help-block">Introduzca una guía de tránsito</span>
+                                                    @Html.TextBoxFor(model => model.GuiaTransito, new { id = "GuiaTransito", @class = "span12 m-wrap", data_notice = "Guía de tránsito." })
+                                                    @Html.ValidationMessageFor(model => model.GuiaTransito)
                                                 </div>
                                             </div>
                                         </div>
@@ -217,9 +212,8 @@
                                             <div class="control-group">
                                                 <label class="control-label">Precio del flete</label>
                                                 <div class="controls">
-                                                    @Html.TextBoxFor(model => model.GuiaTransito, new { id = "GuiaTransito", @class = "span12 m-wrap" })
-                                                    @Html.ValidationMessageFor(model => model.GuiaTransito)
-                                                    <span class="help-block">Introduzca un precio para el flete</span>
+                                                    @Html.TextBoxFor(model => model.Flete.precioFlete, new { id = "PrecioFlete", @class = "span12 m-wrap", @Value = "0" })
+                                                    @Html.ValidationMessageFor(model => model.Flete.precioFlete)
                                                 </div>
                                             </div>
                                         </div>
@@ -229,9 +223,8 @@
                                             <div class="control-group">
                                                 <label class="control-label">Vehiculos disponibles<span class="required"> *</span></label>
                                                 <div class="controls">
-                                                    @Html.TextBoxFor(model => model.IDProveedor, new { id = "ManifestacionFierro", @class = "span12 m-wrap" })
-                                                    @Html.ValidationMessageFor(model => model.IDProveedor)
-                                                    <span class="help-block">Introduzca una guía de tránsito</span>
+                                                    @Html.DropDownList("ListaVehiculos", ViewData["cmbVehiculos"] as SelectList, new { id = "ListaVehiculos", @class = "span12 m-wrap chosen", data_notice = "Seleccion un vehículo."  })
+                                                    <span class="help-block">Seleccione un vehículo</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -239,9 +232,9 @@
                                             <div class="control-group">
                                                 <label class="control-label">Choferes disponibles</label>
                                                 <div class="controls">
-                                                    @Html.TextBoxFor(model => model.GuiaTransito, new { id = "GuiaTransito", @class = "span12 m-wrap" })
-                                                    @Html.ValidationMessageFor(model => model.GuiaTransito)
-                                                    <span class="help-block">Introduzca un precio para el flete</span>
+                                                    @Html.DropDownListFor(model => model.Chofer.ListaChoferes, ViewData["cmbChoferes"] as SelectList, new { id = "ListaChoferes", @class = "span12 m-wrap chosen", data_notice = "Seleccion un chofer." })
+                                                    @Html.ValidationMessageFor(model => model.Chofer.ListaChoferes)
+                                                    <span class="help-block">Seleccione un chofer</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -259,37 +252,11 @@
                                     <div class="row-fluid">
                                         <div class="span12">
                                             <div id="floating-panel">
-                                                <b>Start: </b>
-                                                <select id="start">
-                                                    <option value="chicago, il">Chicago</option>
-                                                    <option value="st louis, mo">St Louis</option>
-                                                    <option value="joplin, mo">Joplin, MO</option>
-                                                    <option value="oklahoma city, ok">Oklahoma City</option>
-                                                    <option value="amarillo, tx">Amarillo</option>
-                                                    <option value="gallup, nm">Gallup, NM</option>
-                                                    <option value="flagstaff, az">Flagstaff, AZ</option>
-                                                    <option value="winona, az">Winona</option>
-                                                    <option value="kingman, az">Kingman</option>
-                                                    <option value="barstow, ca">Barstow</option>
-                                                    <option value="san bernardino, ca">San Bernardino</option>
-                                                    <option value="los angeles, ca">Los Angeles</option>
-                                                </select>
-                                                <b>End: </b>
-                                                <select id="end">
-                                                    <option value="-25.363, 131.044">Ubicación de prueba</option>
-                                                    <option value="st louis, mo">St Louis</option>
-                                                    <option value="joplin, mo">Joplin, MO</option>
-                                                    <option value="oklahoma city, ok">Oklahoma City</option>
-                                                    <option value="amarillo, tx">Amarillo</option>
-                                                    <option value="gallup, nm">Gallup, NM</option>
-                                                    <option value="flagstaff, az">Flagstaff, AZ</option>
-                                                    <option value="winona, az">Winona</option>
-                                                    <option value="kingman, az">Kingman</option>
-                                                    <option value="barstow, ca">Barstow</option>
-                                                    <option value="san bernardino, ca">San Bernardino</option>
-                                                    <option value="los angeles, ca">Los Angeles</option>
-                                                </select>
-                                            </div>
+                                                <b>Inicio: </b>
+                                                @Html.DropDownList("start", ViewData["cmbLugarInicio"] as SelectList, new { id = "start" })
+                                                <b>Fin: </b>
+                                                @Html.DropDownList("end", ViewData["cmbLugarFinal"] as SelectList, new { id = "end" })
+                                               </div>
                                             <div id="map"></div>
                                         </div>
                                     </div>
@@ -339,11 +306,8 @@
                                             <div class="control-group">
                                                 <label class="control-label">Merma sugerida</label>
                                                 <div class="controls">
-                                                    @Html.TextBoxFor(model => model.MermaPromedio, new { id = "MermaSugerida", @class = "span12 m-wrap" })
-                                                    @Html.ValidationMessageFor(model => model.MermaPromedio)
-                                                    <span class="help-block">Ingrese el número de merma máximo</span>
+                                                    @Html.TextBox("MermaSugerida", null, new { id = "MermaSugerida", @class = "span12 m-wrap", disabled = "disabled" })
                                                 </div>
-
                                             </div>
                                         </div>
                                         <div class="span4">
@@ -352,7 +316,6 @@
                                                 <div class="controls">
                                                     @Html.TextBoxFor(model => model.MermaPromedio, new { id = "MermaPromedio", @class = "span12 m-wrap", disabled = "disabled" })
                                                     @Html.ValidationMessageFor(model => model.MermaPromedio)
-                                                    <span class="help-block">Merma Promedio</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -360,9 +323,7 @@
                                             <div class="control-group">
                                                 <label class="control-label">Total de la compra</label>
                                                 <div class="controls">
-                                                    @Html.TextBoxFor(model => model.MermaPromedio, new { id = "TotalCompra", @class = "span12 m-wrap", disabled = "disabled" })
-                                                    @Html.ValidationMessageFor(model => model.MermaPromedio)
-                                                    <span class="help-block">Total de la compra</span>
+                                                    @Html.TextBox("TotalCompra", null, new { id = "TotalCompra", @class = "span12 m-wrap", disabled = "disabled" })
                                                 </div>
                                             </div>
                                         </div>
@@ -374,8 +335,7 @@
                                             <div class="control-group">
                                                 <label class="control-label">Cantidad de ganado total</label>
                                                 <div class="controls">
-                                                    @Html.TextBoxFor(model => model.MermaPromedio, new { id = "CantidadGanadoTotal", @class = "span12 m-wrap", disabled = "disabled" })
-                                                    @Html.ValidationMessageFor(model => model.MermaPromedio)
+                                                    @Html.TextBox("CantidadGanadoTotal", null, new { id = "CantidadGanadoTotal", @class = "span12 m-wrap", disabled = "disabled" })
                                                 </div>
                                             </div>
                                         </div>
@@ -383,8 +343,7 @@
                                             <div class="control-group">
                                                 <label class="control-label">Cantidad ganado machos</label>
                                                 <div class="controls">
-                                                    @Html.TextBoxFor(model => model.MermaPromedio, new { id = "CantidadGanadoMacho", @class = "span12 m-wrap", disabled = "disabled" })
-                                                    @Html.ValidationMessageFor(model => model.MermaPromedio)
+                                                    @Html.TextBox("CantidadGanadoMacho", null, new { id = "CantidadGanadoMacho", @class = "span12 m-wrap", disabled = "disabled" })
                                                 </div>
                                             </div>
                                         </div>
@@ -392,8 +351,7 @@
                                             <div class="control-group">
                                                 <label class="control-label">Cantidad ganado hembras</label>
                                                 <div class="controls">
-                                                    @Html.TextBoxFor(model => model.MermaPromedio, new { id = "CantidadGanadoHembras", @class = "span12 m-wrap", disabled = "disabled" })
-                                                    @Html.ValidationMessageFor(model => model.MermaPromedio)
+                                                    @Html.TextBox("CantidadGanadoHembra", null, new { id = "CantidadGanadoHembra", @class = "span12 m-wrap", disabled = "disabled" })
                                                 </div>
                                             </div>
                                         </div>
@@ -626,12 +584,41 @@
                                         </div>
                                     </div>
 
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">Ganado</div>
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Grupo</th>
+                                                    <th>Sexo</th>
+                                                    <th>Cantidad</th>
+                                                    <th>Peso bruto origen</th>
+                                                    <th>Merma</th>
+                                                    <th>Peso neto origen</th>
+                                                    <th>Costo por kilo</th>
+                                                    <th>Importe</th>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
 
 
-                                    <div class="form-actions">
+
+                                    @*<div class="form-actions">
                                         <input type="submit" value="Guardar" class="btn green">
                                         <a href="@Url.Action("Index","Compra")" class="btn btn-default red"><i class="icon-prev"></i>Cancelar</a>
-                                    </div>
+                                    </div>*@
                                 </div>
                                 <!--TERMINA TAP 8 RESUMEN-->
                                 <ul class="pager wizard">
@@ -651,6 +638,7 @@
     </div>
 </div>
 
+<!--INICIA MODALES-->
 <!-- INICIA MODAL GANADO -->
 <div id="AltaGanado" class="modal fade" role="dialog" style="display:none" aria-hidden="true">
     <div class="modal-dialog">
@@ -709,7 +697,6 @@
                         </div>
                     </div>
 
-
                     <div class="control-group">
                         <label class="control-label" for="inputRango">Rango establecido</label>
                         <div class="controls">
@@ -727,7 +714,7 @@
                     <div class="control-group">
                         <label class="control-label" for="inputPrecioPagadoPorKilo">Precio pagado por kilo</label>
                         <div class="controls">
-                            <input type="text" id="inputPrecioPagadoPorKilo" placeholder="Precio pagado por kilo" disabled>
+                            <input type="text" id="inputPrecioPagadoPorKilo" placeholder="Precio pagado por kilo" >
                         </div>
                     </div>
 
@@ -886,7 +873,7 @@
     </div>
 </div>
 <!-- TERMINA MODAL PAGO -->
-
+<!--TERMINA MODALES-->
 
 <script>
     function initMap() {
@@ -904,13 +891,17 @@
         document.getElementById('start').addEventListener('change', onChangeHandler);
         document.getElementById('end').addEventListener('change', onChangeHandler);
     }
-
     function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-        var destination = new google.maps.LatLng(37.7699298, -122.4469157);
+
+        var arrayInicio = document.getElementById('start').value.split(" | ");
+        var inicio = new google.maps.LatLng(arrayInicio[1].replace(",", "."), arrayInicio[2].replace(",", "."));
+
+        var arrayFinal = document.getElementById('end').value.split(" | ");
+        var final = new google.maps.LatLng(arrayFinal[1].replace(",", "."), arrayFinal[2].replace(",", "."));
 
         directionsService.route({
-            origin: document.getElementById('start').value,
-            destination: destination,
+            origin: inicio,
+            destination: final,
             travelMode: 'DRIVING'
         }, function (response, status) {
             if (status === 'OK') {
@@ -920,11 +911,237 @@
             }
         });
     }
+    function AjaxProveedor(id_proveedor) {
+        $.ajax({
+            url: 'GetDataProveedor',
+            data: { id_proveedor: id_proveedor },
+            type: "POST",
+            error: function () {
+                alert("A ocurrido un error.");
+            },
+            success: function (data) {
+                document.getElementById("UPP").value = data[0];
+                document.getElementById("UPP").defaultValue = data[0];
+
+                if (data[1]) {
+                    $(".file-preview-image").attr("src", "data:image/png;base64," + data[1]);
+                }
+                else
+                {
+                    $(".file-preview-image").attr("src", "data:image/svg + xml;utf8;base64, PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI / Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0 + CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MTIgNTEyOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjEyOHB4IiBoZWlnaHQ9IjEyOHB4Ij4KPGc + Cgk8Zz4KCQk8cGF0aCBkPSJNMzYyLjA4NywxNjQuMDE3SDE0OS45MTVjLTYuNjIsMC0xMS45ODgsNS4zNjctMTEuOTg4LDExLjk4OGMwLDYuNjIxLDUuMzY3LDExLjk4OCwxMS45ODgsMTEuOTg4aDIxMi4xNzIgICAgYzYuNjIxLDAsMTEuOTg4LTUuMzY4LDExLjk4OC0xMS45ODhDMzc0LjA3NSwxNjkuMzg0LDM2OC43MDgsMTY0LjAxNywzNjIuMDg3LDE2NC4wMTd6IiBmaWxsPSIjMDAwMDAwIi8 + Cgk8L2c + CjwvZz4KPGc + Cgk8Zz4KCQk8cGF0aCBkPSJNMzYyLjA4NywyMzYuMzU1SDE0OS45MTVjLTYuNjIsMC0xMS45ODgsNS4zNjgtMTEuOTg4LDExLjk4OGMwLDYuNjIxLDUuMzY3LDExLjk4OCwxMS45ODgsMTEuOTg4aDIxMi4xNzIgICAgYzYuNjIxLDAsMTEuOTg4LTUuMzY4LDExLjk4OC0xMS45ODhTMzY4LjcwOCwyMzYuMzU1LDM2Mi4wODcsMjM2LjM1NXoiIGZpbGw9IiMwMDAwMDAiLz4KCTwvZz4KPC9nPgo8Zz4KCTxnPgoJCTxwYXRoIGQ9Ik00NDcuOTM3LDEwMy40MzljLTAuMDgyLTMuMDA4LTEuMjc2LTUuOTQ0LTMuNDg5LTguMTU4bC05MS42OS05MS42OWMtMi4xNzYtMi4yMTQtNS4yLTMuNTkyLTguNTUtMy41OTJIODkuMjg1ICAgIGMtMTMuOTIsMC0yNS4yNDcsMTEuMzI1LTI1LjI0NywyNS4yNDhsMC4wMDUsMjk5LjM1M2MwLDAuMTA2LDAuMDEzLDAuMjA3LDAuMDE2LDAuMzEzYzAuMTY0LDYuMDY1LDMuMzAzLDExLjU2Miw4LjQ4NCwxNC43NzkgICAgbDQxLjM1MiwyNS42NjdjMTMuNjQ5LDguNDY5LDMwLjYwNSw4LjQ2OSw0NC4yNTItMC4wMDFsMjguMzgxLTE3LjYxNGM1Ljg0OS0zLjYzMSwxMy4xMTYtMy42MywxOC45NjUtMC4wMDFsMjguMzgxLDE3LjYxNSAgICBjNi44MjQsNC4yMzcsMTQuNDc0LDYuMzU1LDIyLjEyNiw2LjM1NGM3LjY1MSwwLDE1LjMwNC0yLjExOCwyMi4xMjYtNi4zNTRsMjguMzgxLTE3LjYxNWM1Ljg0OS0zLjYyOSwxMy4xMTYtMy42MjksMTguOTY1LDAgICAgbDI4LjM4MSwxNy42MTVjMTMuNjQ1LDguNDcyLDMwLjYsOC40NzIsNDQuMjUyLDBsNDEuMzU1LTI1LjY2N2M1LjE3OS0zLjIxNSw4LjMxNy04LjcxMyw4LjQ4Mi0xNC43NzcgICAgYzAuMDAyLTAuMTA0LDAuMDE2LTAuMjA3LDAuMDE2LTAuMzEzbDAuMDA1LTIyMC44NDVDNDQ3Ljk2NCwxMDMuNjQsNDQ3Ljk0NiwxMDMuNTQzLDQ0Ny45MzcsMTAzLjQzOXogTTM1Ni4xOTMsNDAuOTM1aDAuMDAxICAgIGw1MC44MzQsNTAuODM0aC00OS41NzNjLTAuNjk1LDAtMS4yNjItMC41NjctMS4yNjItMS4yNjJWNDAuOTM1eiBNNDIzLjk4MywzMjEuMDhsLTM4LjUyLDIzLjkwOCAgICBjLTUuODQ5LDMuNjMxLTEzLjExNiwzLjYzLTE4Ljk2NSwwLjAwMWwtMjguMzgxLTE3LjYxNmMtMTMuNjQ5LTguNDY5LTMwLjYwNS04LjQ2OC00NC4yNTIsMC4wMDFsLTI4LjM4MSwxNy42MTUgICAgYy01Ljg0OSwzLjYyOS0xMy4xMTYsMy42MjktMTguOTY1LDBsLTI4LjM4MS0xNy42MTVjLTEzLjY0Ni04LjQ3Mi0zMC42MDItOC40NzItNDQuMjUyLDBsLTI4LjM4MSwxNy42MTUgICAgYy01Ljg0OSwzLjYyOS0xMy4xMTYsMy42MjktMTguOTY1LDBsLTM4LjUyLTIzLjkwOUw4OC4wMTQsMjUuMjQ4YzAtMC43MDEsMC41NzEtMS4yNzIsMS4yNzEtMS4yNzJoMjQyLjkzM3Y2Ni41MzIgICAgYzAsMTMuOTE2LDExLjMyMSwyNS4yMzgsMjUuMjM4LDI1LjIzOGg2Ni41MzJMNDIzLjk4MywzMjEuMDh6IiBmaWxsPSIjMDAwMDAwIi8 + Cgk8L2c + CjwvZz4KPGc + Cgk8Zz4KCQk8cGF0aCBkPSJNNDQ3Ljk1OCwzOTUuOTQ4YzAuMDAxLTAuMDMxLTAuMDA0LTAuMDYxLTAuMDA0LTAuMDkyczAuMDA1LTAuMDYxLDAuMDA1LTAuMDkyYzAtNi41MjEtMy41NDEtMTIuNTQ0LTkuMjQyLTE1LjcxNCAgICBjLTUuNy0zLjE2OC0xMi42ODItMy4wMDMtMTguMjIzLDAuNDM2bC0zNS40NCwyMS45OTRjLTUuNTk4LDMuNDczLTEyLjU1NCwzLjQ3My0xOC4xNSwwLjAwMWwtMjkuMTk3LTE4LjEyMSAgICBjLTEzLjM5Ny04LjMxNy0zMC4wNDItOC4zMTctNDMuNDM3LDBsLTI5LjE5NywxOC4xMmMtNS41OTgsMy40NzMtMTIuNTUzLDMuNDczLTE4LjE1MSwwLjAwMWwtMjkuMTk3LTE4LjEyMSAgICBjLTEzLjM5Ni04LjMxNS0zMC4wNDItOC4zMTUtNDMuNDM3LDBsLTI5LjE5NSwxOC4xMmMtNS41OTgsMy40NzMtMTIuNTU0LDMuNDc0LTE4LjE1LDBsLTM1LjQzOS0yMS45OTQgICAgYy01LjU0MS0zLjQzOC0xMi41MjMtMy42MDgtMTguMjI0LTAuNDM2Yy01LjcsMy4xNzEtOS4yNDIsOS4xOTItOS4yNDIsMTUuNzE0YzAsMC4wMzEsMC4wMDUsMC4wNjEsMC4wMDUsMC4wOTIgICAgYzAsMC4wMzEtMC4wMDUsMC4wNjEtMC4wMDUsMC4wOTJsLTAuMDA1LDkwLjgwNGMwLDEzLjkyMiwxMS4zMjUsMjUuMjQ4LDI1LjI0NywyNS4yNDhoMzMzLjQzNCAgICBjMTMuOTIsMCwyNS4yNDctMTEuMzI1LDI1LjI0Ny0yNS4yNDlMNDQ3Ljk1OCwzOTUuOTQ4eiBNNDIyLjcxNyw0ODguMDI0SDg5LjI4NWMtMC43LDAtMS4yNzEtMC41NzEtMS4yNzEtMS4yNzFsMC4wMDQtODAuMjE1ICAgIGwyNi4yODUsMTYuMzE0YzEzLjM5OCw4LjMxMiwzMC4wNDIsOC4zMTIsNDMuNDM2LTAuMDAxbDI5LjE5NS0xOC4xMjFjNS41OTctMy40NzQsMTIuNTUxLTMuNDczLDE4LjE1MSwwbDI5LjE5NSwxOC4xMjIgICAgYzYuNjk5LDQuMTU2LDE0LjIwOSw2LjIzNSwyMS43MTksNi4yMzVjNy41MDksMCwxNS4wMi0yLjA3OSwyMS43MTktNi4yMzZsMjkuMTk1LTE4LjEyMWM1LjU5Ny0zLjQ3NCwxMi41NTEtMy40NzUsMTguMTUxLDAgICAgbDI5LjE5NywxOC4xMjJjMTMuNCw4LjMxNCwzMC4wNDIsOC4zMTIsNDMuNDM2LDBsMjYuMjg1LTE2LjMxNGwwLjAwNCw4MC4yMTRDNDIzLjk4OCw0ODcuNDUzLDQyMy40MTgsNDg4LjAyNCw0MjIuNzE3LDQ4OC4wMjR6IiBmaWxsPSIjMDAwMDAwIi8 + Cgk8L2c + CjwvZz4KPGc + CjwvZz4KPGc + CjwvZz4KPGc + CjwvZz4KPGc + CjwvZz4KPGc + CjwvZz4KPGc + CjwvZz4KPGc + CjwvZz4KPGc + CjwvZz4KPGc + CjwvZz4KPGc + CjwvZz4KPGc + CjwvZz4KPGc + CjwvZz4KPGc + CjwvZz4KPGc + CjwvZz4KPGc + CjwvZz4KPC9zdmc + Cg == ");
+                }
+            }
+        });
+    }
+
+    function FuncionesAjax(tab) {
+
+        switch (tab) {
+            case 1:
+                var ListaProveedor = document.getElementById("ListaProveedor").value;
+                var FechaHoraProgramada = document.getElementById("FechaHoraProgramada").value;
+                var GanadoPactadoMachos = document.getElementById("GanadoPactadoMachos").value;
+                var GanadoPactadoHembras = document.getElementById("GanadoPactadoHembras").value;
+                var id_compra = document.getElementById("id_compra").defaultValue;
+
+                var data = { Id_proveedor: ListaProveedor, CantidadPactadaMachos: GanadoPactadoMachos, CantidadPactadaHembras: GanadoPactadoHembras, FechaProgramada: FechaHoraProgramada, id_compra: id_compra }
+
+                $.ajax({
+                    url: "Tab1",
+                    data: data,
+                    type: "POST",
+                    error: function ()
+                    {
+                        alert("A ocurrido un error.");
+                    },
+                    success: function (data)
+                    {
+                        if (data != "1")
+                        {
+                            document.getElementById("id_compra").value = data;
+                            document.getElementById("id_compra").defaultValue = data;
+                        }
+                    }
+                });
+
+                break;
+            case 2:
+                var formdata = new FormData(); //FormData object
+                var fileInput = document.getElementById('ImgFierros');
+                //Iterating through each files selected in fileInput
+                for (i = 0; i < fileInput.files.length; i++) {
+                    //Appending each file to FormData object
+                    formdata.append(fileInput.files[i].name, fileInput.files[i]);
+                }
+                //Creating an XMLHttpRequest and sending
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', 'Upload');
+                xhr.send(formdata);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        alert(xhr.responseText);
+                    }
+                }
+                return false;
+
+            default:
+                break;
+        }
+
+        
+    }
+
+
+    function ValidarWizard(indexTab)
+    {
+        var Msj = "";
+        var continuar = true;
+
+        switch (indexTab)
+        {
+            //Núm. de tab
+            case 1:
+                var ListaProveedor = document.getElementById("ListaProveedor");
+                var FechaHoraProgramada = document.getElementById("FechaHoraProgramada");
+
+                //En estos solo validar que la suma sea mayor 0
+                var GanadoPactadoMachos = document.getElementById("GanadoPactadoMachos").value;
+                var GanadoPactadoHembras = document.getElementById("GanadoPactadoHembras").value;
+
+                var ListaTab1 = [ListaProveedor, FechaHoraProgramada]
+                Msj = ValidarCamposVacios(ListaTab1);
+
+                if (isNaN(GanadoPactadoMachos) || isNaN(GanadoPactadoHembras)) {
+                    Msj += "Debe de introducir un número. <br/>";
+                }
+                if (Number(GanadoPactadoMachos) < 0 || Number(GanadoPactadoHembras < 0)) {
+                    Msj += "Debe de introducir un número positivo. <br/>";
+                }
+                else
+                {
+                    if ((GanadoPactadoMachos + GanadoPactadoHembras) == 0)
+                    {
+                        Msj += "Debe de introducir algún número positivo. <br/>.";
+                    }
+                }
+                
+                break;
+            case 2:
+                var ImgFierros = document.getElementById("ImgFierros");
+                var ListaTab2 = [ImgFierros];
+                Msj = ValidarCamposVacios(ListaTab2);
+                break;
+            case 3:
+                var GuiaTransito = document.getElementById("GuiaTransito");
+                var ListaVehiculos = document.getElementById("ListaVehiculos");
+                var ListaChoferes = document.getElementById("ListaChoferes");
+                var ListaTab3 = [GuiaTransito, ListaVehiculos, ListaChoferes];
+                
+                Msj = ValidarCamposVacios(ListaTab3);
+                var PrecioFlete = document.getElementById("PrecioFlete").value;
+
+                if (Number(PrecioFlete) < 0 || isNaN(Number(PrecioFlete)))
+                {
+                    Msj += "El flete debe ser mayor o igual a 0 (cero).";
+                }
+                break;
+            default:
+                break;
+        }
+
+        if (Msj != "")
+        {
+            MensajeErrorFaltantes(Msj);
+            continuar = false;
+        }
+        return continuar;
+    }
+    function MensajeErrorFaltantes(Msj)
+    {
+        $('#Error').html('<h2> ELEMENTOS FALTANTES: <br/>' + Msj + ' FAVOR DE COMPLETARLOS.<h2>');
+        $('#Error').css("display", "block");
+        $('#Error').delay(400).slideDown(400).delay(2000).slideUp(400);
+        $('#Error').css("display", "block");
+    }
+    function ValidarCamposVacios(ListaElem)
+    {
+        var Msj = "";
+
+        for (i = 0; i < ListaElem.length; i++) {
+            var valueElem = ListaElem[i].value;
+
+            if (valueElem == null || valueElem == "" || valueElem == undefined) {
+                Msj += ListaElem[i].dataset.notice + "<br/>";
+            }
+            else if (ListaElem[i].type == "select-one")
+            {
+                if (valueElem == 0)
+                {
+                    Msj += ListaElem[i].dataset.notice + "<br/>";
+                }
+            }
+        }
+        return Msj;
+    }
+    function CrearCompra() {
+        var crear = false;
+        var id_compra = document.getElementById("id_compra").value;
+        if (id_compra == 1) {
+            crear = true;
+        }
+        return crear;
+    }
+    function ListTabCompra(tab)
+    {
+        var ListaTab;
+        switch (tab)
+        {
+            case 1:
+                var UPP = document.getElementById("UPP");
+                var FechaHoraProgramada = document.getElementById("FechaHoraProgramada");
+                var GanadoPactadoMachos = document.getElementById("GanadoPactadoMachos");
+                var GanadoPactadoHembras = document.getElementById("GanadoPactadoHembras");
+
+                ListaTab = [UPP, FechaHoraProgramada, GanadoPactadoMachos, GanadoPactadoHembras];
+                break;
+
+            default:
+                break;
+        }
+        return ListaTab;
+    }
+    function ValidarUpdateCompra(tab)
+    {
+        var Actualizar = false;
+        var NewValue, OldValue;
+        var Lista = ListTabCompra(tab);
+
+        for (var i = 0; i < Lista.length; i++)
+        {
+            NewValue = Lista[i].value;
+            OldValue = Lista[i].defaultValue;
+
+            if (NewValue != OldValue)
+            {
+                Actualizar = true;
+            }
+        }
+
+        return Actualizar;
+    }
+    function SetDefaultValues(tab)
+    {
+        var Lista = ListTabCompra(tab);
+        for (var i = 0; i < Lista.length; i++)
+        {
+            Lista[i].defaultValue = Lista[i].value;
+        }
+    }
+
     jQuery(document).ready(function () {
 
         var message = '@message';
         var typemessage = '@typemessage';
-
 
         if (typemessage && message) {
             if (typemessage == '1') {
@@ -947,30 +1164,111 @@
             uploadUrl: '#',
             allowedFileExtensions: ['jpg', 'png', 'gif']
         });
+        $('#ImgFierros').on('filezoomshow', function (event, params) {
+            $(".file-zoom-dialog").css("visibility", "visible");
+            $(".file-zoom-content.file-preview-image").css("max-height", "none");
+        });
+        $("#ImgManifestacionFierro").fileinput({
+            autoReplace: true,
+            maxFileCount: 1,
+            language: 'es',
+            allowedFileExtensions: ["jpg", "png", "gif"],
+            showBrowse: false, 
+            showRemove: false,
+            showUpload: false,
+            showClose: false,
+            browseOnZoneClick: true,
+            showZoom: true,
+            showDrag: false,
+            showCancel: false,
+            showPreview: true,
+            showCaption: false,
+            initialPreview: [
+                '<img class="file-preview-image" style="width: auto; height: auto; max-width: 100%; max-height: 100%;" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MTIgNTEyOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjEyOHB4IiBoZWlnaHQ9IjEyOHB4Ij4KPGc+Cgk8Zz4KCQk8cGF0aCBkPSJNMzYyLjA4NywxNjQuMDE3SDE0OS45MTVjLTYuNjIsMC0xMS45ODgsNS4zNjctMTEuOTg4LDExLjk4OGMwLDYuNjIxLDUuMzY3LDExLjk4OCwxMS45ODgsMTEuOTg4aDIxMi4xNzIgICAgYzYuNjIxLDAsMTEuOTg4LTUuMzY4LDExLjk4OC0xMS45ODhDMzc0LjA3NSwxNjkuMzg0LDM2OC43MDgsMTY0LjAxNywzNjIuMDg3LDE2NC4wMTd6IiBmaWxsPSIjMDAwMDAwIi8+Cgk8L2c+CjwvZz4KPGc+Cgk8Zz4KCQk8cGF0aCBkPSJNMzYyLjA4NywyMzYuMzU1SDE0OS45MTVjLTYuNjIsMC0xMS45ODgsNS4zNjgtMTEuOTg4LDExLjk4OGMwLDYuNjIxLDUuMzY3LDExLjk4OCwxMS45ODgsMTEuOTg4aDIxMi4xNzIgICAgYzYuNjIxLDAsMTEuOTg4LTUuMzY4LDExLjk4OC0xMS45ODhTMzY4LjcwOCwyMzYuMzU1LDM2Mi4wODcsMjM2LjM1NXoiIGZpbGw9IiMwMDAwMDAiLz4KCTwvZz4KPC9nPgo8Zz4KCTxnPgoJCTxwYXRoIGQ9Ik00NDcuOTM3LDEwMy40MzljLTAuMDgyLTMuMDA4LTEuMjc2LTUuOTQ0LTMuNDg5LTguMTU4bC05MS42OS05MS42OWMtMi4xNzYtMi4yMTQtNS4yLTMuNTkyLTguNTUtMy41OTJIODkuMjg1ICAgIGMtMTMuOTIsMC0yNS4yNDcsMTEuMzI1LTI1LjI0NywyNS4yNDhsMC4wMDUsMjk5LjM1M2MwLDAuMTA2LDAuMDEzLDAuMjA3LDAuMDE2LDAuMzEzYzAuMTY0LDYuMDY1LDMuMzAzLDExLjU2Miw4LjQ4NCwxNC43NzkgICAgbDQxLjM1MiwyNS42NjdjMTMuNjQ5LDguNDY5LDMwLjYwNSw4LjQ2OSw0NC4yNTItMC4wMDFsMjguMzgxLTE3LjYxNGM1Ljg0OS0zLjYzMSwxMy4xMTYtMy42MywxOC45NjUtMC4wMDFsMjguMzgxLDE3LjYxNSAgICBjNi44MjQsNC4yMzcsMTQuNDc0LDYuMzU1LDIyLjEyNiw2LjM1NGM3LjY1MSwwLDE1LjMwNC0yLjExOCwyMi4xMjYtNi4zNTRsMjguMzgxLTE3LjYxNWM1Ljg0OS0zLjYyOSwxMy4xMTYtMy42MjksMTguOTY1LDAgICAgbDI4LjM4MSwxNy42MTVjMTMuNjQ1LDguNDcyLDMwLjYsOC40NzIsNDQuMjUyLDBsNDEuMzU1LTI1LjY2N2M1LjE3OS0zLjIxNSw4LjMxNy04LjcxMyw4LjQ4Mi0xNC43NzcgICAgYzAuMDAyLTAuMTA0LDAuMDE2LTAuMjA3LDAuMDE2LTAuMzEzbDAuMDA1LTIyMC44NDVDNDQ3Ljk2NCwxMDMuNjQsNDQ3Ljk0NiwxMDMuNTQzLDQ0Ny45MzcsMTAzLjQzOXogTTM1Ni4xOTMsNDAuOTM1aDAuMDAxICAgIGw1MC44MzQsNTAuODM0aC00OS41NzNjLTAuNjk1LDAtMS4yNjItMC41NjctMS4yNjItMS4yNjJWNDAuOTM1eiBNNDIzLjk4MywzMjEuMDhsLTM4LjUyLDIzLjkwOCAgICBjLTUuODQ5LDMuNjMxLTEzLjExNiwzLjYzLTE4Ljk2NSwwLjAwMWwtMjguMzgxLTE3LjYxNmMtMTMuNjQ5LTguNDY5LTMwLjYwNS04LjQ2OC00NC4yNTIsMC4wMDFsLTI4LjM4MSwxNy42MTUgICAgYy01Ljg0OSwzLjYyOS0xMy4xMTYsMy42MjktMTguOTY1LDBsLTI4LjM4MS0xNy42MTVjLTEzLjY0Ni04LjQ3Mi0zMC42MDItOC40NzItNDQuMjUyLDBsLTI4LjM4MSwxNy42MTUgICAgYy01Ljg0OSwzLjYyOS0xMy4xMTYsMy42MjktMTguOTY1LDBsLTM4LjUyLTIzLjkwOUw4OC4wMTQsMjUuMjQ4YzAtMC43MDEsMC41NzEtMS4yNzIsMS4yNzEtMS4yNzJoMjQyLjkzM3Y2Ni41MzIgICAgYzAsMTMuOTE2LDExLjMyMSwyNS4yMzgsMjUuMjM4LDI1LjIzOGg2Ni41MzJMNDIzLjk4MywzMjEuMDh6IiBmaWxsPSIjMDAwMDAwIi8+Cgk8L2c+CjwvZz4KPGc+Cgk8Zz4KCQk8cGF0aCBkPSJNNDQ3Ljk1OCwzOTUuOTQ4YzAuMDAxLTAuMDMxLTAuMDA0LTAuMDYxLTAuMDA0LTAuMDkyczAuMDA1LTAuMDYxLDAuMDA1LTAuMDkyYzAtNi41MjEtMy41NDEtMTIuNTQ0LTkuMjQyLTE1LjcxNCAgICBjLTUuNy0zLjE2OC0xMi42ODItMy4wMDMtMTguMjIzLDAuNDM2bC0zNS40NCwyMS45OTRjLTUuNTk4LDMuNDczLTEyLjU1NCwzLjQ3My0xOC4xNSwwLjAwMWwtMjkuMTk3LTE4LjEyMSAgICBjLTEzLjM5Ny04LjMxNy0zMC4wNDItOC4zMTctNDMuNDM3LDBsLTI5LjE5NywxOC4xMmMtNS41OTgsMy40NzMtMTIuNTUzLDMuNDczLTE4LjE1MSwwLjAwMWwtMjkuMTk3LTE4LjEyMSAgICBjLTEzLjM5Ni04LjMxNS0zMC4wNDItOC4zMTUtNDMuNDM3LDBsLTI5LjE5NSwxOC4xMmMtNS41OTgsMy40NzMtMTIuNTU0LDMuNDc0LTE4LjE1LDBsLTM1LjQzOS0yMS45OTQgICAgYy01LjU0MS0zLjQzOC0xMi41MjMtMy42MDgtMTguMjI0LTAuNDM2Yy01LjcsMy4xNzEtOS4yNDIsOS4xOTItOS4yNDIsMTUuNzE0YzAsMC4wMzEsMC4wMDUsMC4wNjEsMC4wMDUsMC4wOTIgICAgYzAsMC4wMzEtMC4wMDUsMC4wNjEtMC4wMDUsMC4wOTJsLTAuMDA1LDkwLjgwNGMwLDEzLjkyMiwxMS4zMjUsMjUuMjQ4LDI1LjI0NywyNS4yNDhoMzMzLjQzNCAgICBjMTMuOTIsMCwyNS4yNDctMTEuMzI1LDI1LjI0Ny0yNS4yNDlMNDQ3Ljk1OCwzOTUuOTQ4eiBNNDIyLjcxNyw0ODguMDI0SDg5LjI4NWMtMC43LDAtMS4yNzEtMC41NzEtMS4yNzEtMS4yNzFsMC4wMDQtODAuMjE1ICAgIGwyNi4yODUsMTYuMzE0YzEzLjM5OCw4LjMxMiwzMC4wNDIsOC4zMTIsNDMuNDM2LTAuMDAxbDI5LjE5NS0xOC4xMjFjNS41OTctMy40NzQsMTIuNTUxLTMuNDczLDE4LjE1MSwwbDI5LjE5NSwxOC4xMjIgICAgYzYuNjk5LDQuMTU2LDE0LjIwOSw2LjIzNSwyMS43MTksNi4yMzVjNy41MDksMCwxNS4wMi0yLjA3OSwyMS43MTktNi4yMzZsMjkuMTk1LTE4LjEyMWM1LjU5Ny0zLjQ3NCwxMi41NTEtMy40NzUsMTguMTUxLDAgICAgbDI5LjE5NywxOC4xMjJjMTMuNCw4LjMxNCwzMC4wNDIsOC4zMTIsNDMuNDM2LDBsMjYuMjg1LTE2LjMxNGwwLjAwNCw4MC4yMTRDNDIzLjk4OCw0ODcuNDUzLDQyMy40MTgsNDg4LjAyNCw0MjIuNzE3LDQ4OC4wMjR6IiBmaWxsPSIjMDAwMDAwIi8+Cgk8L2c+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==" />'
+            ],
+            initialPreviewConfig: [
+                { type: "image", caption: "" },
+            ]
+        });
+        $('#kvFileinputModal').on('show', function () {
+            $(this).find('.modal-body').css({
 
-
+                'max-height': '100%'
+            });
+        });
         $('#rootwizard').bootstrapWizard({
             onTabShow: function (tab, navigation, index) {
                 var $total = navigation.find('li').length;
                 var $current = index + 1;
                 var $percent = ($current / $total) * 100;
                 $('#rootwizard .bar').css({ width: $percent + '%' });
+            },
+            onTabClick: function (tab, navigation, index) {
+                return false;
+            },
+            onNext: function (tab, navigation, index) {
+                var continuar = ValidarWizard(index);
+
+                if (continuar)
+                {
+                    console.log(index);
+
+                    if (index == 1) {
+                        var Compra = CrearCompra();
+                        if (Compra) {
+                            console.log("Crear compra");
+                            FuncionesAjax(index);
+                            SetDefaultValues(index);
+                            console.log("Set DefaultValues: " + index);
+                        }
+
+                        if (ValidarUpdateCompra(index) && !Compra) {
+                            console.log("Update tab: " + index);
+                            FuncionesAjax(index);
+                            SetDefaultValues(index);
+                            console.log("Set DefaultValues: " + index);
+                        }
+                    }
+                    else if (index == 2)
+                    {
+                        //Al momento de avanzar en el tab subimos las imagenes
+                        FuncionesAjax(index);
+                    }
+                    else
+                    {
+                        if (ValidarUpdateCompra(index))
+                        {
+                            console.log("Update tab: " + index);
+                            FuncionesAjax(index);
+                            SetDefaultValues(index);
+                            console.log("Set DefaultValues");
+                        }
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            },
+            onPrevious: function(tab, navigation, index) {
+
             }
         });
-
         $('#AltaGanado').on('show', function () {
             $(this).find('.modal-body').css({
 
                 'max-height': '100%'
             });
         });
-        //$("#BtnUPPModal").click(function () {
-        //    $("#ModalUPP").modal();
-        //    });
-        //$(".CloseModal").click(function (){
-        //    $("#ModalUPP").modal("hide")
-        //});
+        $("#ListaProveedor").on("change", function (e) {
+            var optionSelected = $("option:selected", this);
+            var valueSelected = this.value;
+            AjaxProveedor(valueSelected);
+        });
     });
+
+   
+
 </script>
 }
 

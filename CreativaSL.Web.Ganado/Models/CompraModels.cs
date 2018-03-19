@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Web;
 
 namespace CreativaSL.Web.Ganado.Models
@@ -31,11 +35,26 @@ namespace CreativaSL.Web.Ganado.Models
         private bool _Estatus;
         private HttpPostedFileBase[] _ImgFierros;
         private List<CatProveedorModels> _TablaProveedoresCmb;
+
+
+        public FleteModels Flete { get; set; }
+        public CatChoferModels Chofer { get; set; }
+        public CatLugarModels Lugar { get; set; }
+
+
+        public DataTable TablaVehiculos { set; get; }
+        public DataTable TablaLugares { set; get; }
+
+        /*INICIA VARIABLES PARA EL COMBOBOX DE VEHICULOS*/
+        public string Id_vehiculo { set; get; }
+        public string DescripcionVehiculo { get; set; }
+        public string Group { get; set; }
+        /*TERMINA VARIABLES PARA EL COMBOBOX DE VEHICULOS*/
         #endregion
 
         #region Metodos
         [Required(ErrorMessage = "Seleccione una imagen de un fierro, por lo menos.")]
-        [Display(Name = "Imganes Fierros")]
+        [Display(Name = "Imagenes Fierros")]
         public HttpPostedFileBase[] ImgFierros { get; set; }
 
         public string IDCompra
@@ -68,11 +87,16 @@ namespace CreativaSL.Web.Ganado.Models
             get { return _IDRecepcion; }
             set { _IDRecepcion = value; }
         }
+
+        [Required]
+        [DisplayName("Guía de tránsito")]
         public string GuiaTransito
         {
             get { return _GuiaTransito; }
             set { _GuiaTransito = value; }
         }
+
+
         public string CertZoosanitario
         {
             get { return _CertZoosanitario; }
@@ -94,24 +118,33 @@ namespace CreativaSL.Web.Ganado.Models
             set { _FechaHoraCompra = value; }
         }
 
-
+        [Required]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayName("Fecha programada")]
         public DateTime FechaHoraProgramada
         {
             get { return _FechaHoraProgramada; }
             set { _FechaHoraProgramada = value; }
         }
+
+        [Range(0, 500)]
+        [DisplayName("Ganado pactado machos")]
         public int GanadoPactadoMachos
         {
             get { return _GanadoPactadoMachos; }
             set { _GanadoPactadoMachos = value; }
         }
+
+        [Range(0, 500)]
+        [DisplayName("Ganado pactado hembras")]
         public int GanadoPactadoHembras
         {
             get { return _GanadoPactadoHembras; }
             set { _GanadoPactadoHembras = value; }
         }
+
+        [Range(0, 500)]
         public int GanadoPactadoTotal
         {
             get { return _GanadoPactadoTotal; }
@@ -142,7 +175,6 @@ namespace CreativaSL.Web.Ganado.Models
             get { return _tablaCompra; }
             set { _tablaCompra = value; }
         }
-
         [Required(ErrorMessage = "Tipo de Usuario es un campo requerido")]
         [Display(Name = "Tipo de Usuario")]
         public List<CatProveedorModels> TablaProveedoresCmb
@@ -159,5 +191,9 @@ namespace CreativaSL.Web.Ganado.Models
         public string Usuario { get; set; }
         public int Opcion { get; set; }
         #endregion
+
+       
+
+
     }
 }
