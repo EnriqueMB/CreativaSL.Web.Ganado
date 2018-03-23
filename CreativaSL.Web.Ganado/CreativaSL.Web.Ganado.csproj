@@ -2468,6 +2468,17 @@
     <Content Include="Content\assets2\plugins\uniform\images\sprite_original.png" />
     <Content Include="Content\assets2\plugins\uniform\jquery.uniform.js" />
     <Content Include="Content\assets2\plugins\uniform\jquery.uniform.min.js" />
+    <Content Include="Content\assets2\plugins\uploadFiles\bootstrap2.css" />
+    <Content Include="Content\assets2\plugins\uploadFiles\es.js" />
+    <Content Include="Content\assets2\plugins\uploadFiles\explorer-fa\theme.css" />
+    <Content Include="Content\assets2\plugins\uploadFiles\explorer-fa\theme.js" />
+    <Content Include="Content\assets2\plugins\uploadFiles\fileinput.css" />
+    <Content Include="Content\assets2\plugins\uploadFiles\fileinput.js" />
+    <Content Include="Content\assets2\plugins\uploadFiles\font-awesome.min.css" />
+    <Content Include="Content\assets2\plugins\uploadFiles\jquery.js" />
+    <Content Include="Content\assets2\plugins\uploadFiles\sortable.js" />
+    <Content Include="Content\assets2\plugins\uploadFiles\theme.css" />
+    <Content Include="Content\assets2\plugins\uploadFiles\theme.js" />
     <Content Include="Content\assets2\res\cursos\cursos.jpg" />
     <Content Include="Content\assets2\scripts\app.js" />
     <Content Include="Content\assets2\scripts\calendar.js" />
@@ -3472,7 +3483,6 @@
     <Folder Include="Content\assets2\img\uploads\" />
     <Folder Include="Content\assets2\plugins\email\img\uploads4\" />
     <Folder Include="Content\assets2\plugins\jquery-file-upload\server\php\files\thumbnail\" />
-    <Folder Include="Content\assets2\plugins\uploadFiles\" />
     <Folder Include="Controllers\" />
   </ItemGroup>
   <PropertyGroup>
