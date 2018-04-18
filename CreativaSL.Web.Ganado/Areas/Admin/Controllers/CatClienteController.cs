@@ -7,6 +7,8 @@ using System.Web;
 using System.Web.Mvc;
 using CreativaSL.Web.Ganado.Models;
 using System.Data;
+using Rotativa;
+
 
 namespace CreativaSL.Web.Ganado.Areas.Admin.Controllers
 {
@@ -34,6 +36,43 @@ namespace CreativaSL.Web.Ganado.Areas.Admin.Controllers
                 return View(Cliente);
             }
         }
+
+        public ActionResult PDF_INDEX()
+        {
+            try
+            {
+                CatClienteModels Cliente = new CatClienteModels();
+                CatCliente_Datos ClienteD = new CatCliente_Datos();
+                Cliente.Conexion = Conexion;
+                Cliente = ClienteD.ObtenerClientes(Cliente);
+                //new ViewAsPdf("Index") { PageOrientation = Rotativa.Options.Orientation.Landscape, CustomSwitches = "--viewport-size 1000x1000" };
+
+                var report = new ActionAsPdf("Index")
+                {
+                    //FileName = "Invoice.pdf",
+                    PageOrientation = Rotativa.Options.Orientation.Landscape,
+                    CustomSwitches = "--page-offset 0 --footer-center [page] --footer-font-size 12 --viewport-size 1000x1000"
+
+                };
+                return report;
+                //var pdfResult = new ActionAsPdf("Index", new { name = "Giorgio" }) { FileName = "Test.pdf" };
+
+                //var binary = pdfResult.BuildPdf(this.ControllerContext);
+
+                //return File(binary, "application/pdf");
+
+            }
+            catch (Exception)
+            {
+                CatClienteModels Cliente = new CatClienteModels();
+                Cliente.ListaClientes = new List<CatClienteModels>();
+                TempData["typemessage"] = "2";
+                TempData["message"] = "No se puede cargar la vista";
+                return View(Cliente);
+            }
+        }
+
+
 
         // GET: Admin/CatClientes/Details/5
         public ActionResult Details(int id)

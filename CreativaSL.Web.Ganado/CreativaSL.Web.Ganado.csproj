@@ -122,6 +122,10 @@
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rotativa.1.6.4\lib\net40\Rotativa.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.Entity.Design" />
     <Reference Include="System.Data.Entity.Repository, Version=2.0.0.1, Culture=neutral, processorArchitecture=MSIL">
@@ -2824,7 +2828,9 @@
     <Content Include="Areas\Admin\Views\CatJaula\Create.cshtml" />
     <Content Include="Areas\Admin\Views\CatLugar\Create.cshtml" />
     <Content Include="Areas\Admin\Views\CatLugar\Edit.cshtml" />
+    <Content Include="App_Browsers\qt.browser" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.js" />
